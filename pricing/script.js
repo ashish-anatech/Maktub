@@ -1,0 +1,4 @@
+// Local script for /pricing
+document.addEventListener('DOMContentLoaded', function () {
+  console.log('Loaded script: /pricing/script.js');
+});

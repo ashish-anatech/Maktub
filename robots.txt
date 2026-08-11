@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /blog/create/
+
+Sitemap: https://www.maktubsignatures.com/sitemap.xml

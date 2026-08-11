@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create blog post | Maktub Signature Services</title>
+  <meta name="description" content="Create a new Maktub blog post.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0d2927">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to editor</a>
+<header class="site-header" id="site-header">
+  <div class="header-inner">
+    <a href="/" class="brand" aria-label="Maktub Signature Services home page">
+      <img class="brand-mark" src="/assets/logo.png" alt="Maktub Signature Services">
+      <span class="brand-text"><span class="brand-name">Maktub</span><span class="brand-sub">Signature Services</span></span>
+    </a>
+    <div class="header-actions"><a class="header-phone" href="tel:+12535550100" aria-label="Call Maktub Signature Services at (253) 555-0100"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 1.9.6 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.8.6a2 2 0 0 1 1.7 2z"/></svg><span>(253) 555-0100</span></a><a href="/blog/" class="btn btn-outline btn-sm">Back to blog</a></div>
+  </div>
+</header>
+
+<main id="main" class="editor-page">
+  <div class="editor-topbar">
+    <div class="wrap editor-topbar__inner">
+      <div><p class="eyebrow">Blog editor</p><h1 class="h-md">Create a new post</h1></div>
+      <div class="editor-actions"><button class="btn btn-outline btn-sm" type="button" data-editor-preview aria-expanded="false" aria-controls="editor-preview">Preview</button><button class="btn btn-navy btn-sm" type="button" data-editor-save>Save draft</button><button class="btn btn-gold btn-sm" type="button" data-editor-export>Download HTML</button></div>
+    </div>
+  </div>
+
+  <section class="section-sm">
+    <div class="wrap editor-shell" data-blog-editor>
+      <form class="editor-form" novalidate>
+        <div class="field"><label for="post-title">Add title</label><input id="post-title" name="title" type="text" placeholder="Enter your post title" autocomplete="off" required></div>
+        <div class="editor-meta-grid">
+          <div class="field"><label for="post-slug">Permalink</label><div class="slug-field"><span>/blog/</span><input id="post-slug" name="slug" type="text" placeholder="your-post-title" autocomplete="off"></div></div>
+          <div class="field"><label for="post-category">Category</label><select id="post-category" name="category"><option>General Notary</option><option>Loan Signings</option><option>Estate Planning</option><option>Document Authentication</option><option>Mobile Notary</option><option>Business Notary</option></select></div>
+        </div>
+        <div class="field"><label for="post-excerpt">Excerpt</label><textarea id="post-excerpt" name="excerpt" rows="3" placeholder="Write a short summary readers will see on the blog page."></textarea></div>
+        <div class="field"><label for="post-cover">Featured image URL <span class="optional">(optional)</span></label><input id="post-cover" name="cover" type="url" placeholder="https://example.com/featured-image.jpg"></div>
+        <div class="field editor-content-field"><label for="post-content">Write your post</label><div class="editor-toolbar" aria-label="Formatting shortcuts"><button type="button" data-format="bold"><strong>B</strong></button><button type="button" data-format="italic"><em>I</em></button><button type="button" data-format="heading">H2</button><button type="button" data-format="list">List</button></div><textarea id="post-content" name="content" rows="16" placeholder="Start writing your post…"></textarea></div>
+        <p class="editor-status" role="status" aria-live="polite"></p>
+        <section class="editor-seo" id="editor-seo">
+          <div class="editor-seo__head"><div><p class="eyebrow">SEO</p><h2>Search &amp; readability</h2></div><span>⌃</span></div>
+          <div class="editor-seo__tabs" role="tablist" aria-label="Post optimization settings"><button class="is-active" type="button" role="tab" aria-selected="true" aria-controls="seo-panel" id="seo-tab" data-seo-tab="seo">SEO</button><button type="button" role="tab" aria-selected="false" aria-controls="readability-panel" id="readability-tab" data-seo-tab="readability">Readability</button><button type="button" role="tab" aria-selected="false" aria-controls="schema-panel" id="schema-tab" data-seo-tab="schema">Schema</button><button type="button" role="tab" aria-selected="false" aria-controls="social-panel" id="social-tab" data-seo-tab="social">Social</button></div>
+          <div id="seo-panel" role="tabpanel" aria-labelledby="seo-tab" data-seo-panel="seo"><div class="field"><label for="post-keyphrase">Focus keyphrase</label><input id="post-keyphrase" name="keyphrase" type="text" placeholder="e.g. mobile notary Tacoma"></div><p>Use the keyphrase naturally in your title, excerpt, and post content.</p></div>
+          <div id="readability-panel" role="tabpanel" aria-labelledby="readability-tab" data-seo-panel="readability" hidden><div class="editor-checklist"><p><strong>Readability check</strong></p><p>Write short paragraphs, use descriptive headings, and include clear next steps for readers.</p><p data-readability-score>Start writing to see your word count.</p></div></div>
+          <div id="schema-panel" role="tabpanel" aria-labelledby="schema-tab" data-seo-panel="schema" hidden><div class="field"><label for="post-schema">Schema type</label><select id="post-schema" name="schemaType"><option value="Article">Article</option><option value="FAQPage">FAQ page</option><option value="HowTo">How-to guide</option></select></div><div class="field schema-markup-field"><label for="post-schema-markup">Custom schema markup <span class="optional">(JSON-LD)</span></label><textarea id="post-schema-markup" name="schemaMarkup" rows="8" spellcheck="false" placeholder="Paste JSON-LD schema, for example: { &quot;@context&quot;: &quot;https://schema.org&quot;, &quot;@type&quot;: &quot;Article&quot; }"></textarea></div><p>Choose a type, then add any custom JSON-LD schema markup for this post.</p></div>
+          <div id="social-panel" role="tabpanel" aria-labelledby="social-tab" data-seo-panel="social" hidden><div class="field"><label for="post-social-title">Social title</label><input id="post-social-title" name="socialTitle" type="text" placeholder="Defaults to your post title"></div><div class="field"><label for="post-social-description">Social description</label><textarea id="post-social-description" name="socialDescription" rows="3" placeholder="Defaults to your excerpt"></textarea></div></div>
+        </section>
+      </form>
+      <aside class="editor-sidebar">
+        <div class="editor-inspector-tabs" role="tablist" aria-label="Editor settings"><button class="is-active" type="button" role="tab" aria-selected="true" aria-controls="post-settings-panel" id="post-settings-tab" data-inspector-tab="post">Post</button><button type="button" role="tab" aria-selected="false" aria-controls="block-settings-panel" id="block-settings-tab" data-inspector-tab="block">Block</button></div>
+        <div id="post-settings-panel" role="tabpanel" aria-labelledby="post-settings-tab" data-inspector-panel="post"><div class="editor-panel"><p class="eyebrow">Post settings</p><h2>Summary</h2><dl class="editor-summary"><div><dt>Visibility</dt><dd>Public</dd></div><div><dt>Publish</dt><dd>Immediately</dd></div><div><dt>URL</dt><dd data-inspector-url>/blog/your-post-title</dd></div></dl><label class="editor-check"><input id="post-sticky" name="sticky" type="checkbox"> Stick to the top of the blog</label><label class="editor-check"><input id="post-pending" name="pending" type="checkbox"> Pending review</label></div><div class="editor-panel editor-note"><strong>Drafts stay on this device.</strong><p>Your work is autosaved in this browser only. To put a post live, use <em>Download HTML</em>. It produces a finished page you add to the site.</p></div></div>
+        <div id="block-settings-panel" role="tabpanel" aria-labelledby="block-settings-tab" data-inspector-panel="block" hidden><div class="editor-panel"><p class="eyebrow">Block settings</p><h2>Insert content block</h2><div class="field"><label for="post-block-type">Block type</label><select id="post-block-type" name="blockType"><option value="paragraph">Paragraph</option><option value="heading">Heading</option><option value="quote">Quote</option><option value="checklist">Checklist</option></select></div><button class="editor-media-button editor-media-button--wide" type="button" data-insert-block>Insert block</button></div><div class="editor-panel editor-note"><strong>Tip</strong><p>Place your cursor in the editor, choose a block type, then insert it into the post.</p></div></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="editor-export-section" hidden data-export-section>
+    <div class="wrap wrap-narrow">
+      <p class="eyebrow">Publish</p>
+      <h2 class="h-lg">Three steps to put this post live</h2>
+      <ol class="editor-export-steps">
+        <li>
+          <h3>Add the downloaded file</h3>
+          <p>Save it in the site as <code data-export-path>blog/your-post/index.html</code>. Create the folder and rename the download to <code>index.html</code>.</p>
+        </li>
+        <li>
+          <h3>List it on the blog page</h3>
+          <p>Paste this card into the <code>.blog-grid</code> in <code>blog/index.html</code>, alongside the other <code>&lt;article class="post-card"&gt;</code> entries, after the featured story and the "Latest Insights" heading. It does not need to be first.</p>
+          <div class="editor-export-copy">
+            <textarea id="export-card" rows="12" readonly spellcheck="false" data-export-card></textarea>
+            <button class="btn btn-outline btn-sm" type="button" data-copy-target="#export-card">Copy</button>
+          </div>
+        </li>
+        <li>
+          <h3>Add it to the sitemap</h3>
+          <p>Paste this line into <code>sitemap.xml</code>, before the closing <code>&lt;/urlset&gt;</code>.</p>
+          <div class="editor-export-copy">
+            <textarea id="export-sitemap" rows="2" readonly spellcheck="false" data-export-sitemap></textarea>
+            <button class="btn btn-outline btn-sm" type="button" data-copy-target="#export-sitemap">Copy</button>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="editor-preview-section" id="editor-preview" hidden data-preview-section>
+    <div class="wrap wrap-narrow">
+
+      <div class="editor-preview-bar">
+        <div>
+          <p class="eyebrow">Live preview</p>
+          <p class="editor-preview-url" data-preview-url>/blog/your-post-title/</p>
+        </div>
+        <button class="btn btn-outline btn-sm" type="button" data-preview-close>Close preview</button>
+      </div>
+
+      <article class="editor-preview-card">
+        <p class="eyebrow" data-preview-category>General Notary</p>
+        <h2 class="h-lg" data-preview-title>Your post title</h2>
+        <div class="article-meta" data-preview-meta></div>
+
+        <figure class="article-cover" data-preview-figure hidden>
+          <img data-preview-image alt="">
+        </figure>
+
+        <p class="lede" data-preview-excerpt>Your post excerpt will appear here.</p>
+        <div class="editor-preview-content article-content" data-preview-content></div>
+      </article>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer"></footer>
+<script src="/js/script.js"></script>
+</body>
+</html>
