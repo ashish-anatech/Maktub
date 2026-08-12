@@ -3025,6 +3025,9 @@ textarea { resize: vertical; min-height: 108px; }
 }
 .capability-row li { padding: 4px clamp(12px, 1.6vw, 22px); }
 .capability-row li + li { border-left: 1px solid var(--line); }
+.capability-row li > a { display: block; color: inherit; text-decoration: none; border-radius: 10px; transition: transform 0.15s ease; }
+.capability-row li > a:hover, .capability-row li > a:focus-visible { transform: translateY(-3px); }
+.capability-row li > a:hover h3, .capability-row li > a:focus-visible h3 { color: var(--gold-600); }
 .cap-ico { display: inline-flex; margin-bottom: 14px; color: var(--gold-600); }
 .capability-row h3 {
   margin: 0 0 8px;

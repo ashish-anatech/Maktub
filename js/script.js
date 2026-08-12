@@ -1321,7 +1321,7 @@ renderBody(data.content) +
         .then(function (r) {
           if (!r.ok) throw new Error("bad status");
           form.reset();
-          say("Thank you \u2014 you are on the list.");
+          say("Thank you, you are on the list.");
         })
         .catch(function () { say("Something went wrong. Please email us instead."); });
       return;
