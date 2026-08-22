@@ -1,0 +1,130 @@
+/* ==========================================================================
+   Maktub Mobile Notary - logo reveal intro
+   Self-contained. Nothing here targets an existing site component.
+   ========================================================================== */
+
+.logo-reveal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  overflow: hidden;
+  contain: layout paint;
+}
+
+html.lr-armed .logo-reveal { display: flex; }
+html.lr-armed { overflow: hidden; }
+
+.logo-reveal.is-out {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.46s cubic-bezier(0.33, 0, 0.2, 1);
+}
+
+/* ---- stage: one coordinate space, 625 x 412 units ---- */
+.lr-stage {
+  position: relative;
+  width: min(430px, 60vw);
+  aspect-ratio: 625 / 412;
+}
+@supports not (aspect-ratio: 1 / 1) {
+  .lr-stage { height: 0; padding-top: 65.92%; }
+}
+@media (max-width: 700px) { .lr-stage { width: 76vw; } }
+@media (max-width: 420px) { .lr-stage { width: 82vw; } }
+
+.lr-layer {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* mark artwork lives inside the SVG (masked); these are the other layers */
+.lr-sparkle {
+  left: 66.24%;
+  top: 8.7379%;
+  width: 9.28%;
+  opacity: 0;
+  transform: scale(0.35) rotate(-24deg);
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+.lr-wordmark {
+  top: 71.8447%;
+  opacity: 0;
+  filter: blur(4px);
+  transform: translateY(10px);
+  will-change: transform, opacity, filter;
+}
+.lr-tagline {
+  top: 91.7476%;
+  opacity: 0;
+  -webkit-clip-path: inset(0 50% 0 50%);
+  clip-path: inset(0 50% 0 50%);
+  will-change: clip-path, opacity;
+}
+
+/* ---- the drawing surface -------------------------------------------------
+   viewBox "-80 -170 785 600" so the pen can travel outside the artwork box.
+   Percentages below map 1 viewBox unit to exactly 1 stage unit.
+   -------------------------------------------------------------------------- */
+.lr-canvas {
+  position: absolute;
+  left: -12.8%;
+  top: -41.2621%;
+  width: 125.6%;
+  height: 145.6311%;
+  max-width: none;   /* the global `svg { max-width: 100% }` would shrink it */
+  max-height: none;
+  overflow: visible;
+  pointer-events: none;
+  opacity: 0;
+}
+.lr-canvas.is-ready { opacity: 1; }
+
+.lr-mask-stroke {
+  fill: none;
+  stroke: #fff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 4000;
+  stroke-dashoffset: 4000;
+}
+
+.lr-pen { opacity: 0; }
+.lr-tip-glow { opacity: 0; }
+
+/* ---- skip affordance ---- */
+.lr-skip {
+  position: absolute;
+  right: 18px;
+  bottom: 16px;
+  border: 0;
+  background: none;
+  padding: 6px 8px;
+  font: inherit;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8b97ad;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.4s ease, color 0.2s ease;
+}
+.logo-reveal.is-skippable .lr-skip { opacity: 1; }
+.lr-skip:hover, .lr-skip:focus-visible { color: #062b6f; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lr-pen, .lr-tip-glow, .lr-skip { display: none; }
+  .lr-sparkle { opacity: 1; transform: none; }
+  .lr-wordmark { opacity: 1; filter: none; transform: none; }
+  .lr-tagline { opacity: 1; -webkit-clip-path: none; clip-path: none; }
+  .lr-mask-stroke { stroke-dashoffset: 0; }
+}

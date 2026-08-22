@@ -1,37 +1,53 @@
 /* ==========================================================================
    Maktub Signature Services - Design System
-   Navy + gold identity drawn from the notary seal mark.
+   Blue + teal + white identity.
    Aurora gradient surfaces, glass cards, bento layouts.
    HTML5 / CSS3 only - no frameworks.
    ========================================================================== */
 
 :root {
-  /* Brand - sampled from the Maktub seal */
-  --navy-950: #071c1a;
-  --navy-900: #0d2927;
-  --navy-850: #11332f;
-  --navy-800: #17413d;
-  --navy-700: #245c55;
-  --navy-600: #36776e;
+  /* Brand - blue + teal palette */
+  /* Brand - sampled from the Maktub Mobile Notary logo:
+     a royal navy that deepens to near-black, a brighter royal blue for the
+     right-hand stroke, and the logo's gold for accents.
+     Gold is a mid-tone, so it needs a dark ground: #c9ab63 measures 5.99:1 on
+     the navy but only 2.19:1 on white. Hence two tiers - --gold on dark
+     surfaces, --gold-ink (deepened, same hue) anywhere light. */
+  /* Brand - sampled directly from assets/logo.png:
+     deep navy #062b6f (the M's left stroke and the MAKTUB wordmark),
+     bright azure #005b9e (the right stroke and "MOBILE NOTARY"),
+     antique gold #c9ab63 (the star, the pen nib dot, the flanking rules).
+     Gold needs a dark ground: #c9ab63 is 5.99:1 on the navy but fails on
+     white, so --gold-ink carries it on light surfaces. */
+  --navy-950: #041634;
+  --navy-900: #062b6f;
+  --navy-850: #082f78;
+  --navy-800: #013c80;
+  --navy-700: #004e8e;
+  --navy-600: #005b9e;
 
-  --gold-300: #f0dcac;
-  --gold-400: #e3c176;
-  --gold-500: #c9a227;
-  --gold-600: #a87830;
-  --gold-700: #6f4e17;
+  /* Azure accent ramp, under the historical --gold-* names */
+  --gold-300: #a9d4f0;
+  --gold-400: #4a9fd8;
+  --gold-500: #007cc2;
+  --gold-600: #005b9e;
+  --gold-700: #013c80;
 
-  --teal-500: #2f8f88;
-  --teal-400: #47b3aa;
+  --gold:      #c9ab63;   /* dark ground only - 5.99:1 on --navy-900 */
+  --gold-lift: #dcc48a;   /* for the card gradient's bright azure end */
+  --gold-ink:  #7d6a2e;   /* light ground - 5.06:1 on paper */
 
-  /* Neutrals */
-  --ink: #173633;
-  --ink-soft: #405d58;
-  --muted: #526862;   /* one step darker: was landing at 4.0-4.4:1 on the warm backgrounds */
-  --paper: #fbfaf7;
-  --mist: #f7f5ee;
-  --mist-warm: #f2ede4;
-  --line: #e4e8f0;
-  --line-warm: #e8e0cf;
+  --teal-500: #005b9e;
+  --teal-400: #4a9fd8;
+
+  --ink: #0d1f42;
+  --ink-soft: #33456e;
+  --muted: #4a5a7d;
+  --paper: #fafafa;
+  --mist: #f0f3f8;
+  --mist-warm: #e6ecf5;
+  --line: #dae1ee;
+  --line-warm: #ccd6e8;
 
   /* Type */
   --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
@@ -44,10 +60,10 @@
   --r-xl: 28px;
 
   /* Elevation */
-  --sh-sm: 0 1px 2px rgba(16, 26, 41, 0.06);
-  --sh-md: 0 8px 24px -10px rgba(16, 26, 41, 0.18);
-  --sh-lg: 0 24px 60px -24px rgba(10, 20, 36, 0.35);
-  --glow-gold: 0 8px 28px -8px rgba(201, 162, 39, 0.5);
+  --sh-sm: 0 1px 2px rgba(13, 31, 66, 0.06);
+  --sh-md: 0 8px 24px -10px rgba(13, 31, 66, 0.18);
+  --sh-lg: 0 24px 60px -24px rgba(4, 22, 52, 0.35);
+  --glow-gold: 0 8px 28px -8px rgba(0, 91, 158, 0.5);
 
   --container: 1180px;
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
@@ -67,96 +83,6 @@ body {
   background: var(--paper);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-}
-
-/* ---------- Welcome screen ---------- */
-.welcome-screen {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: grid;
-  place-items: center;
-  padding: 24px;
-  overflow: hidden;
-  color: #fff;
-  text-align: center;
-  background:
-    linear-gradient(rgba(6, 13, 24, 0.34), rgba(6, 13, 24, 0.34)),
-    url("../assets/hero-blur.svg") center / cover no-repeat,
-    var(--navy-950);
-  animation: welcome-in 300ms var(--ease) both;
-}
-.welcome-screen__content { display: grid; justify-items: center; }
-.welcome-stamp {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: clamp(166px, 28vw, 230px);
-  aspect-ratio: 1;
-  margin-bottom: 26px;
-  border: 5px double var(--gold-400);
-  border-radius: 50%;
-  color: var(--gold-300);
-  box-shadow: 0 0 0 7px rgba(201, 162, 39, 0.14), 0 18px 36px rgba(0, 0, 0, 0.28);
-  transform: rotate(-8deg);
-  animation: stamp-down 700ms 100ms cubic-bezier(0.18, 0.89, 0.32, 1.28) both;
-}
-.welcome-stamp::before,
-.welcome-stamp::after {
-  content: "";
-  position: absolute;
-  inset: 17px;
-  border: 1px solid rgba(240, 220, 172, 0.78);
-  border-radius: 50%;
-}
-.welcome-stamp::after { inset: 23px; border-style: dashed; }
-.welcome-stamp__ring { position: absolute; inset: 40px; border: 1px solid var(--gold-400); border-radius: 50%; }
-.welcome-stamp__seal {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 64px;
-  aspect-ratio: 1;
-  border: 2px solid var(--gold-400);
-  border-radius: 50%;
-  font-family: var(--font-display);
-  font-size: 2.25rem;
-  line-height: 1;
-}
-.welcome-stamp__top,
-.welcome-stamp__bottom {
-  position: absolute;
-  left: 50%;
-  width: 150px;
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.13em;
-  text-align: center;
-  text-transform: uppercase;
-  transform: translateX(-50%);
-}
-.welcome-stamp__top { top: 31px; }
-.welcome-stamp__bottom { bottom: 31px; }
-.welcome-screen__title {
-  font-family: var(--font-display);
-  font-size: clamp(2.15rem, 5vw, 4.25rem);
-  font-weight: 500;
-  line-height: 1.08;
-  letter-spacing: -0.04em;
-  animation: welcome-content 500ms 540ms var(--ease) both;
-}
-.welcome-screen.is-leaving { animation: welcome-out 500ms var(--ease) both; pointer-events: none; }
-
-@keyframes welcome-in { from { opacity: 0; } to { opacity: 1; } }
-@keyframes welcome-out { to { opacity: 0; visibility: hidden; } }
-@keyframes welcome-content {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes stamp-down {
-  0% { opacity: 0; transform: translateY(-110px) scale(1.55) rotate(-16deg); }
-  62% { opacity: 1; transform: translateY(8px) scale(0.92) rotate(-8deg); }
-  100% { opacity: 1; transform: translateY(0) scale(1) rotate(-8deg); }
 }
 
 img, svg { display: block; max-width: 100%; }
@@ -243,13 +169,20 @@ p { margin: 0 0 1em; }
 .on-dark h1, .on-dark h2, .on-dark h3 { color: var(--ink); }
 
 .grad-text {
-  background: linear-gradient(96deg, var(--gold-300) 0%, var(--gold-500) 45%, var(--gold-300) 100%);
+  background: linear-gradient(96deg, var(--gold-300) 0%, var(--gold-500) 40%, var(--teal-400) 75%, var(--gold-300) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
+/* Over a hero photo the mid stops of the standard gradient are too dark to
+   survive a bright image (the old mid-blue measured 1.8:1 against a white
+   photo under the scrim). Heroes get an all-light set instead. Light heroes
+   override this again further down with their deep version. */
+.hero.aurora .grad-text {
+  background-image: linear-gradient(96deg, #a9d4f0 0%, #a9d4f0 40%, #a9d4f0 75%, #a9d4f0 100%);
+}
 .grad-text-dark {
-  background: linear-gradient(96deg, var(--navy-700), var(--gold-600));
+  background: linear-gradient(96deg, var(--navy-700), var(--gold-600) 55%, var(--teal-500));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -292,11 +225,17 @@ p { margin: 0 0 1em; }
 /* Dark floor behind the hero video: no white flash before it paints, and the
    headline stays readable if the video is blocked or fails to load. */
 .home .hero { background-color: var(--navy-950); }
+/* The hero video already carries its own visual interest, so the floating
+   colour orbs (especially the top-left blue one) just muddy the footage. */
+/* Applies to every hero, not just the home one: over a photo or video the
+   floating orbs read as uneven blue blotches rather than a gradient. The scrim
+   below does the tinting instead, so it stays smooth edge to edge. */
+.hero.aurora .orb { display: none; }
 
 /* The headline's first line is dark green everywhere else on the site, which
    would disappear against this video. Here it runs as a light sage green so
    both it and the gold second line read on the dark footage. */
-.home .hero h1 { color: #9fcfbd; }
+.home .hero h1 { color: #a9d4f0; }
 .home .hero .eyebrow-light { color: var(--gold-300); }
 
 .home .hero .hero-background-video {
@@ -343,7 +282,16 @@ p { margin: 0 0 1em; }
 .estate-planning .hero .aurora-bg::after,
 .remote-online-notarization .hero .aurora-bg::after,
 .business-notary .hero .aurora-bg::after{
-  background: linear-gradient(rgba(7, 24, 22, 0.74), rgba(7, 28, 26, 0.80));
+  /* A gentle diagonal wash rather than a flat two-stop fill: several close
+     stops keep it from banding, and the tint is pulled back off full navy so
+     the photograph reads through instead of turning solid blue. */
+  background: linear-gradient(
+    168deg,
+    rgba(10, 25, 40, 0.70) 0%,
+    rgba(10, 28, 45, 0.75) 35%,
+    rgba(9, 31, 50, 0.80) 70%,
+    rgba(8, 33, 54, 0.84) 100%
+  );
 }
 
 /* The eyebrow runs dark gold across the site; over these dark heroes it needs
@@ -358,7 +306,7 @@ p { margin: 0 0 1em; }
 .loan-signings .hero h1,
 .estate-planning .hero h1,
 .remote-online-notarization .hero h1,
-.business-notary .hero h1{ color: #9fcfbd; }
+.business-notary .hero h1{ color: #a9d4f0; }
 
 .general-notary .hero .lede,
 .loan-signings .hero .lede,
@@ -376,7 +324,7 @@ p { margin: 0 0 1em; }
 .aurora-bg::after {
   content: "";
   position: absolute; inset: 0;
-  background: rgba(41, 35, 35, 0.18);
+  background: rgba(4, 22, 52, 0.18);
   backdrop-filter: blur(4px);
   z-index: 2;
 }
@@ -390,12 +338,12 @@ p { margin: 0 0 1em; }
 }
 .orb-1 {
   width: 520px; height: 520px; top: -180px; left: -140px;
-  background: radial-gradient(circle, rgba(201,162,39,0.42), transparent 68%);
+  background: radial-gradient(circle, rgba(0, 91, 158,0.42), transparent 68%);
   animation: float-a 24s ease-in-out infinite alternate;
 }
 .orb-2 {
   width: 600px; height: 600px; bottom: -260px; right: -180px;
-  background: radial-gradient(circle, rgba(47,143,136,0.40), transparent 68%);
+  background: radial-gradient(circle, rgba(0, 91, 158,0.40), transparent 68%);
   animation: float-b 30s ease-in-out infinite alternate;
 }
 .orb-3 {
@@ -412,10 +360,10 @@ p { margin: 0 0 1em; }
   to   { transform: translate3d(-38px, -46px, 0) scale(1.12); }
 }
 
-/* Thin gold rule used as a section seam */
+/* Thin accent rule used as a section seam */
 .seam {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201,162,39,0.55), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 91, 158, 0.55), rgba(0, 91, 158, 0.55), transparent);
   border: 0; margin: 0;
 }
 
@@ -436,28 +384,52 @@ p { margin: 0 0 1em; }
 .btn:hover { transform: translateY(-2px); }
 .btn:active { transform: translateY(0); }
 
+/* Primary action, inverted by context.
+   One saturated blue could not serve both surfaces: bright enough to hold a
+   light section, it read as electric against the dark navy-and-teal cards, and
+   the blue glow around it made that worse. So the primary flips instead -
+   deep navy on light ground, white on dark ground - which is the highest
+   contrast either way and keeps the palette to navy, white and teal. */
 .btn-gold {
-  background: linear-gradient(135deg, var(--gold-400), var(--gold-600));
-  color: #04140f;
-  box-shadow: var(--glow-gold);
+  background: var(--navy-900);
+  color: #fff;
+  box-shadow: 0 8px 20px -10px rgba(6, 43, 111, 0.55);
 }
-.btn-gold:hover { box-shadow: 0 12px 34px -8px rgba(201,162,39,0.62); }
+.btn-gold:hover {
+  background: var(--navy-800);
+  box-shadow: 0 12px 26px -10px rgba(6, 43, 111, 0.6);
+}
+
+/* Dark ground: the booking cards (always dark) and the photo heroes on the
+   home and service pages. Pages carrying .light-hero keep the navy button. */
+.closing-copy .btn-gold,
+body:not(.light-hero) .hero .btn-gold {
+  background: #fff;
+  color: var(--navy-900);
+  box-shadow: 0 8px 22px -10px rgba(4, 16, 31, 0.55);
+}
+.closing-copy .btn-gold:hover,
+body:not(.light-hero) .hero .btn-gold:hover {
+  background: var(--mist);
+  color: var(--navy-950);
+  box-shadow: 0 12px 28px -10px rgba(4, 16, 31, 0.6);
+}
 
 .btn-navy {
-  background: #0d2927;
+  background: #062b6f;
   color: #fff;
   box-shadow: var(--sh-md);
 }
-.btn-navy:hover { background: #17413d; }
+.btn-navy:hover { background: #013c80; }
 
 .btn-glass {
   background: rgba(255,255,255,0.92);
   color: var(--ink);
-  border-color: rgba(16, 26, 41, 0.12);
+  border-color: rgba(13, 31, 66, 0.12);
   backdrop-filter: blur(12px);
-  box-shadow: 0 0 0 1px rgba(16, 26, 41, 0.04);
+  box-shadow: 0 0 0 1px rgba(13, 31, 66, 0.04);
 }
-.btn-glass:hover { background: rgba(255,255,255,0.98); border-color: rgba(16, 26, 41, 0.18); }
+.btn-glass:hover { background: rgba(255,255,255,0.98); border-color: rgba(13, 31, 66, 0.18); }
 
 .btn-outline {
   background: transparent;
@@ -491,7 +463,7 @@ p { margin: 0 0 1em; }
   border-bottom: 1px solid var(--line);
   transition: box-shadow var(--t);
 }
-.site-header.is-stuck { box-shadow: 0 6px 24px -14px rgba(10,20,36,0.4); }
+.site-header.is-stuck { box-shadow: 0 6px 24px -14px rgba(4, 22, 52,0.4); }
 
 .header-inner {
   max-width: var(--container);
@@ -505,11 +477,12 @@ p { margin: 0 0 1em; }
 
 .brand { display: flex; align-items: center; gap: 11px; }
 .brand-mark {
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  object-fit: cover;
+  /* The old logo was a round seal, so this box was a circle with object-fit:
+     cover. The new mark is an M-and-infinity monogram, so it needs the whole
+     bounding box and contain, or its outer strokes get clipped. */
+  width: 48px; height: 48px;
+  object-fit: contain;
   flex-shrink: 0;
-  box-shadow: 0 0 0 1px var(--line-warm);
 }
 .brand-text { display: flex; flex-direction: column; line-height: 1.08; }
 .brand-name {
@@ -598,7 +571,7 @@ p { margin: 0 0 1em; }
   display: grid;
   place-items: center;
   border-radius: 9px;
-  background: linear-gradient(140deg, rgba(201,162,39,0.16), rgba(39,74,117,0.12));
+  background: linear-gradient(140deg, rgba(0, 91, 158,0.16), rgba(0, 91, 158,0.12));
   color: var(--gold-600);
 }
 .submenu-copy { display: flex; flex-direction: column; gap: 1px; }
@@ -607,10 +580,10 @@ p { margin: 0 0 1em; }
 
 .header-actions { display: flex; align-items: center; gap: 12px; }
 .site-header .header-actions .btn-navy {
-  background: #0d2927;
-  box-shadow: 0 8px 20px -10px rgba(13, 41, 39, 0.65);
+  background: #062b6f;
+  box-shadow: 0 8px 20px -10px rgba(6, 43, 111, 0.65);
 }
-.site-header .header-actions .btn-navy:hover { background: #17413d; }
+.site-header .header-actions .btn-navy:hover { background: #013c80; }
 
 /* Tap-to-call. Collapses to an icon-only target on narrow screens, where the
    Book button is hidden and calling is the fastest path to a booking. */
@@ -631,7 +604,7 @@ p { margin: 0 0 1em; }
 .header-phone:hover {
   border-color: var(--gold-400);
   color: var(--navy-900);
-  background: rgba(201, 162, 39, 0.07);
+  background: rgba(0, 91, 158, 0.07);
 }
 
 .burger {
@@ -705,7 +678,7 @@ p { margin: 0 0 1em; }
 .hero-inner { max-width: 900px; margin: 0 auto; text-align: center; }
 .hero h1 { margin-bottom: 22px; }
 .hero .lede { font-size: 1.16rem; margin: 0 auto 34px; }
-.home .hero .lede { color: #f7f0df; }
+.home .hero .lede { color: #dbe9fb; }
 .hero-actions {
   display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;
   margin-bottom: 46px;
@@ -722,14 +695,14 @@ p { margin: 0 0 1em; }
   min-height: 360px;
   border: 0;
   border-radius: 30px;
-  box-shadow: 0 36px 110px rgba(33, 39, 53, 0.16);
+  box-shadow: 0 36px 110px rgba(20, 30, 60, 0.16);
 }
 .area-map {
   width: 100%;
   min-height: 520px;
   border: 0;
   border-radius: 30px;
-  box-shadow: 0 36px 110px rgba(33, 39, 53, 0.16);
+  box-shadow: 0 36px 110px rgba(20, 30, 60, 0.16);
   display: block;
 }
 .map-copy {
@@ -740,8 +713,8 @@ p { margin: 0 0 1em; }
   padding: 30px;
   border-radius: 30px;
   background: rgba(255,255,255,0.95);
-  border: 1px solid rgba(16,26,41,0.08);
-  box-shadow: 0 36px 110px rgba(33, 39, 53, 0.1);
+  border: 1px solid rgba(13, 31, 66,0.08);
+  box-shadow: 0 36px 110px rgba(20, 30, 60, 0.1);
 }
 .map-copy h3 {
   font-size: clamp(1.3rem, 2.5vw, 1.9rem);
@@ -764,7 +737,7 @@ p { margin: 0 0 1em; }
   padding: 7px 16px 7px 7px;
   border-radius: 999px;
   background: rgba(255,255,255,0.96);
-  border: 1px solid rgba(16,26,41,0.08);
+  border: 1px solid rgba(13, 31, 66,0.08);
   font-size: 0.8rem;
   color: var(--ink);
   backdrop-filter: blur(10px);
@@ -773,8 +746,11 @@ p { margin: 0 0 1em; }
   display: inline-flex;
   padding: 3px 10px;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--gold-400), var(--gold-600));
-  color: #04140f;
+  /* Flat navy with white text. The blue gradient carrying near-black text was
+     the same electric problem as the old primary button, and at this size the
+     gradient did nothing but muddy a very small label. */
+  background: var(--navy-900);
+  color: #fff;
   font-weight: 700;
   font-size: 0.72rem;
   letter-spacing: 0.04em;
@@ -795,8 +771,8 @@ p { margin: 0 0 1em; }
   border-radius: var(--r-md);
   text-align: left;
   background: rgba(255,255,255,0.92);
-  border: 1px solid rgba(16,26,41,0.08);
-  box-shadow: 0 18px 45px rgba(16,26,41,0.08);
+  border: 1px solid rgba(13, 31, 66,0.08);
+  box-shadow: 0 18px 45px rgba(13, 31, 66,0.08);
   background-image: none;
   backdrop-filter: blur(10px);
 }
@@ -810,7 +786,7 @@ p { margin: 0 0 1em; }
 .stat-label { font-size: 0.79rem; color: var(--ink-soft); }
 
 /* ---------- Trust bar ---------- */
-.trustbar { background: #0d2927; color: #dce8e4; }
+.trustbar { background: #062b6f; color: #dce8f5; }
 .trustbar-inner {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -823,11 +799,11 @@ p { margin: 0 0 1em; }
   width: 40px; height: 40px;
   display: grid; place-items: center;
   border-radius: 11px;
-  background: linear-gradient(140deg, rgba(201,162,39,0.24), rgba(71,179,170,0.2));
+  background: linear-gradient(140deg, rgba(0, 91, 158,0.24), rgba(74, 159, 216,0.2));
   color: var(--gold-400);
 }
 .trust-item h3 { font-size: 0.98rem; color: #fff; margin-bottom: 3px; }
-.trust-item p { font-size: 0.86rem; color: #b9ccc7; margin: 0; line-height: 1.5; }
+.trust-item p { font-size: 0.86rem; color: #b9cbe0; margin: 0; line-height: 1.5; }
 
 /* ---------- Bento grid (services) ---------- */
 .bento {
@@ -849,14 +825,14 @@ p { margin: 0 0 1em; }
   transition: transform var(--t), box-shadow var(--t), border-color var(--t), background var(--t);
   --mouse-x: 50%;
   --mouse-y: 50%;
-  background-image: linear-gradient(140deg, rgba(201,162,39,0.10), transparent 42%);
+  background-image: linear-gradient(140deg, rgba(0, 91, 158,0.10), transparent 42%);
 }
 .bento-card::after {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(140deg, rgba(201,162,39,0.10), transparent 42%);
+  background: linear-gradient(140deg, rgba(0, 91, 158,0.10), transparent 42%);
   opacity: 0;
   transition: opacity var(--t);
   pointer-events: none;
@@ -865,12 +841,12 @@ p { margin: 0 0 1em; }
 .bento-card.is-hovered {
   transform: translateY(-4px);
   z-index: 1;
-  box-shadow: 0 18px 42px -18px rgba(13, 41, 39, 0.32), 0 0 0 1px rgba(71, 179, 170, 0.12);
+  box-shadow: 0 18px 42px -18px rgba(6, 43, 111, 0.32), 0 0 0 1px rgba(74, 159, 216, 0.12);
   border-color: var(--line-warm);
-  background: rgba(246, 251, 249, 0.97);
+  background: rgba(247, 250, 252, 0.97);
   background-image:
     radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.45), rgba(255,255,255,0.16) 18%, transparent 52%),
-    linear-gradient(140deg, rgba(201,162,39,0.10), transparent 42%);
+    linear-gradient(140deg, rgba(0, 91, 158,0.10), transparent 42%);
 }
 .bento-card:hover::after,
 .bento-card.is-hovered::after { opacity: 1; }
@@ -890,7 +866,7 @@ p { margin: 0 0 1em; }
 .bento-feature p { color: var(--muted); }
 .bento-feature .link-arrow { color: var(--gold-600); }
 .bento-feature .svc-icon {
-  background: linear-gradient(140deg, rgba(201,162,39,0.15), rgba(39,74,117,0.10));
+  background: linear-gradient(140deg, rgba(0, 91, 158,0.15), rgba(0, 91, 158,0.10));
   color: var(--gold-600);
 }
 .bento-glow {
@@ -898,7 +874,7 @@ p { margin: 0 0 1em; }
   width: 300px; height: 300px;
   right: -90px; top: -110px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(201,162,39,0.30), transparent 68%);
+  background: radial-gradient(circle, rgba(0, 91, 158,0.30), transparent 68%);
   filter: blur(48px);
   pointer-events: none;
 }
@@ -908,7 +884,7 @@ p { margin: 0 0 1em; }
   display: grid; place-items: center;
   border-radius: 13px;
   margin-bottom: 18px;
-  background: linear-gradient(140deg, rgba(201,162,39,0.15), rgba(39,74,117,0.10));
+  background: linear-gradient(140deg, rgba(0, 91, 158,0.15), rgba(0, 91, 158,0.10));
   color: var(--gold-600);
 }
 .bento-card h3 { font-size: 1.2rem; margin-bottom: 9px; }
@@ -929,7 +905,7 @@ p { margin: 0 0 1em; }
   justify-content: space-between;
   gap: 14px;
   padding: 18px 26px;
-  background: linear-gradient(120deg, #0d2927, #1b4c46);
+  background: linear-gradient(120deg, #062b6f, #004e8e 65%, #005b9e);
   color: #fff;
 }
 .price-head h3 { color: #fff; font-size: 1.06rem; margin: 0; }
@@ -1097,7 +1073,7 @@ p { margin: 0 0 1em; }
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
   background: #fff;
-  box-shadow: 0 1px 2px rgba(13, 41, 39, 0.04);
+  box-shadow: 0 1px 2px rgba(6, 43, 111, 0.04);
   transition: box-shadow var(--t), transform var(--t), border-color var(--t);
 }
 .post-card:not(.is-featured):hover {
@@ -1138,7 +1114,7 @@ p { margin: 0 0 1em; }
   margin-bottom: 14px;
   padding: 5px 12px;
   border-radius: 999px;
-  background: rgba(201, 162, 39, 0.16);
+  background: rgba(0, 91, 158, 0.16);
   color: var(--gold-700);
   font-size: 0.68rem;
   font-weight: 700;
@@ -1300,9 +1276,11 @@ p { margin: 0 0 1em; }
 .article-hero { padding: clamp(64px, 9vw, 116px) 0 56px; }
 .article-hero__inner { max-width: 820px; }
 .article-meta { display: flex; flex-wrap: wrap; gap: 10px 18px; color: var(--muted); font-size: 0.9rem; }
-.article-byline { display: flex; align-items: center; gap: 11px; margin-top: 24px; color: var(--ink-soft); font-size: 0.88rem; }
-.article-byline img { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line-warm); }
-.article-byline strong { display: block; color: var(--navy-900); }
+.article-byline { display: flex; align-items: center; gap: 13px; margin: 0 0 26px; color: var(--ink-soft); font-size: 0.88rem; }
+.article-byline img { width: 52px; height: 52px; border-radius: 13px; border: 1px solid var(--line-warm); background: #fff; object-fit: contain; padding: 2px; }
+.article-byline strong { display: block; font-size: 1rem; color: var(--navy-900); }
+.article-byline .byline-label { display: block; font-size: 0.76rem; letter-spacing: 0.02em; color: var(--muted); }
+.article-byline .byline-role { display: block; font-size: 0.8rem; color: var(--muted); }
 .article-body { max-width: var(--container); margin: 0 auto; }
 .article-layout { display: grid; grid-template-columns: minmax(0, 1fr) 336px; gap: clamp(30px, 4vw, 54px); align-items: start; }
 .article-content { min-width: 0; }
@@ -1318,7 +1296,7 @@ p { margin: 0 0 1em; }
   border: 1px solid var(--line);
   border-radius: var(--r-md);
   background: #fff;
-  box-shadow: 0 1px 2px rgba(13, 41, 39, 0.04);
+  box-shadow: 0 1px 2px rgba(6, 43, 111, 0.04);
 }
 .article-body .side-title {
   position: relative;
@@ -1414,7 +1392,7 @@ p { margin: 0 0 1em; }
 .article-body .side-card--dark {
   border-color: transparent;
   background:
-    radial-gradient(120% 90% at 100% 0%, rgba(201, 162, 39, 0.13), rgba(201, 162, 39, 0) 62%),
+    radial-gradient(120% 90% at 100% 0%, rgba(0, 91, 158, 0.13), rgba(0, 91, 158, 0) 62%),
     linear-gradient(165deg, var(--navy-900), var(--navy-950));
   box-shadow: var(--sh-md);
 }
@@ -1437,7 +1415,7 @@ p { margin: 0 0 1em; }
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: rgba(240, 220, 172, 0.14);
+  background: rgba(169, 212, 240, 0.14);
   color: var(--gold-300);
 }
 .article-body .side-reach a { color: #fff; font-size: 0.885rem; font-weight: 500; }
@@ -1570,7 +1548,7 @@ p { margin: 0 0 1em; }
 .article-callout p { margin: 0; }
 
 /* ---------- WordPress-inspired blog editor ---------- */
-.editor-page { min-height: 70vh; background: #f5f4ef; }
+.editor-page { min-height: 70vh; background: #f2f6fa; }
 .editor-topbar { border-bottom: 1px solid var(--line); background: var(--paper); }
 .editor-topbar__inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-top: 22px; padding-bottom: 22px; }
 .editor-topbar .eyebrow { margin-bottom: 4px; }
@@ -1580,7 +1558,7 @@ p { margin: 0 0 1em; }
 .editor-form, .editor-panel, .editor-preview-card { border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--paper); box-shadow: var(--sh-sm); }
 .editor-form { padding: clamp(22px, 4vw, 42px); }
 .editor-form > .field:first-child input { padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 600; line-height: 1.13; }
-.editor-form > .field:first-child input::placeholder { color: #9aaaa5; }
+.editor-form > .field:first-child input::placeholder { color: #93a4b3; }
 .editor-meta-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 16px; }
 .slug-field { display: flex; align-items: center; overflow: hidden; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--mist); }
 .slug-field span { padding-left: 14px; color: var(--muted); font-size: 0.9rem; white-space: nowrap; }
@@ -1589,10 +1567,10 @@ p { margin: 0 0 1em; }
 .editor-content-field textarea { min-height: 360px; padding-top: 18px; font-size: 1rem; line-height: 1.8; background: #fff; }
 .editor-toolbar { display: flex; gap: 6px; margin-bottom: 8px; }
 .editor-toolbar button { min-width: 38px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--mist); color: var(--navy-800); font-size: 0.85rem; }
-.editor-toolbar button:hover { border-color: var(--teal-500); background: #e9f2ef; }
+.editor-toolbar button:hover { border-color: var(--teal-500); background: #e9f2f6; }
 .editor-media-row { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 0.8rem; }
-.editor-media-button { padding: 7px 11px; border: 1px solid var(--teal-500); border-radius: 5px; background: #f4fbf9; color: var(--teal-500); font-size: 0.8rem; font-weight: 700; }
-.editor-media-button:hover { background: #e1f1ec; }
+.editor-media-button { padding: 7px 11px; border: 1px solid var(--teal-500); border-radius: 5px; background: #f4fbfd; color: var(--teal-500); font-size: 0.8rem; font-weight: 700; }
+.editor-media-button:hover { background: #e1f1f6; }
 .editor-media-button--wide { width: 100%; margin-top: 10px; }
 .editor-status { min-height: 1.5em; margin: 4px 0 0; color: var(--teal-500); font-weight: 600; }
 .editor-sidebar { display: grid; gap: 16px; }
@@ -1627,24 +1605,24 @@ p { margin: 0 0 1em; }
 .editor-preview-card .is-placeholder { color: var(--muted); font-style: italic; }
 
 /* CMS workspace treatment inspired by familiar post editors. */
-.editor-page { position: relative; padding-left: 0; background: #f4f6f5; }
-.editor-admin-nav { position: absolute; inset: 0 auto 0 0; width: 210px; padding: 28px 14px; background: #0d2927; color: #c7d8d3; }
+.editor-page { position: relative; padding-left: 0; background: #eef3f8; }
+.editor-admin-nav { position: absolute; inset: 0 auto 0 0; width: 210px; padding: 28px 14px; background: #062b6f; color: #c7d5e6; }
 .editor-admin-nav__title { margin: 0 10px 20px; font-size: 0.73rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-300); }
 .editor-admin-nav__link, .editor-admin-nav__sub { display: block; border-radius: 7px; color: inherit; font-size: 0.9rem; font-weight: 600; }
 .editor-admin-nav__link { margin-top: 5px; padding: 10px 12px; }
 .editor-admin-nav__sub { padding: 7px 12px 7px 38px; font-size: 0.82rem; font-weight: 500; }
-.editor-admin-nav__link:hover, .editor-admin-nav__link.is-active { color: #fff; background: #245c55; }
+.editor-admin-nav__link:hover, .editor-admin-nav__link.is-active { color: #fff; background: #004e8e; }
 .editor-admin-nav__sub:hover, .editor-admin-nav__sub.is-current { color: var(--gold-300); }
 .editor-topbar { background: #fff; }
 .editor-topbar__inner { max-width: none; padding: 18px 30px; }
 .editor-topbar h1 { font-size: 1.35rem; }
 .editor-topbar .eyebrow { font-size: 0.65rem; }
-.editor-topbar .btn-gold { background: #0d2927; color: #fff; box-shadow: none; }
+.editor-topbar .btn-gold { background: #062b6f; color: #fff; box-shadow: none; }
 .editor-shell { max-width: none; grid-template-columns: minmax(0, 1fr) 286px; gap: 20px; padding: 0 30px; }
 .editor-form { border-radius: 8px; box-shadow: none; }
 .editor-form > .field:first-child input { font-family: var(--font-body); font-size: 1.5rem; font-weight: 400; }
 .editor-meta-grid { grid-template-columns: 1fr; gap: 12px; }
-.editor-toolbar { margin: 24px -42px 0; padding: 8px 14px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #fbfcfb; }
+.editor-toolbar { margin: 24px -42px 0; padding: 8px 14px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #fafafa; }
 .editor-toolbar select { min-width: 115px; padding: 5px 8px; border: 1px solid var(--line); border-radius: 5px; color: var(--ink-soft); background: #fff; font: inherit; font-size: 0.8rem; }
 .editor-toolbar button { border: 0; background: transparent; }
 .editor-content-field textarea { min-height: 390px; border: 0; border-radius: 0; background: #fff; box-shadow: none; }
@@ -1690,7 +1668,7 @@ p { margin: 0 0 1em; }
   padding: 14px 16px;
   border: 1px solid var(--line);
   border-radius: var(--r-sm);
-  background: #fbfcfb;
+  background: #fafafa;
   color: var(--ink-soft);
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.79rem;
@@ -1698,7 +1676,7 @@ p { margin: 0 0 1em; }
   resize: vertical;
 }
 .editor-export-copy .btn { position: absolute; top: 9px; right: 9px; }
-.editor-seo { margin-top: 26px; padding: 22px; border: 1px solid var(--line); border-radius: 8px; background: #fbfcfb; }
+.editor-seo { margin-top: 26px; padding: 22px; border: 1px solid var(--line); border-radius: 8px; background: #fafafa; }
 .editor-seo__head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
 .editor-seo__head .eyebrow { margin-bottom: 5px; }
 .editor-seo__head h2 { margin: 0; font-family: var(--font-body); font-size: 1rem; }
@@ -1755,10 +1733,10 @@ p { margin: 0 0 1em; }
 .visual-frame {
   position: relative;
   border-radius: var(--r-xl);
-  padding: 40px;
+  padding: 0;
   min-height: 420px;
   width: 100%;
-  background: linear-gradient(150deg, #0d2927, #123b37 55%, #1b4c46);
+  background: linear-gradient(150deg, #062b6f, #082f78 45%, #004e8e 75%, #005b9e);
   box-shadow: var(--sh-lg);
   overflow: hidden;
   display: grid;
@@ -1800,7 +1778,7 @@ opacity: 1;
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(10, 20, 36, 0.42);
+  background: rgba(4, 22, 52, 0.42);
 }
 .general-notary .visual-frame svg,
 .loan-signings .visual-frame svg,
@@ -1839,7 +1817,7 @@ opacity: 1;
   position: absolute;
   top: 21px; left: 8%; right: 8%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201,162,39,0.5), rgba(201,162,39,0.5), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 91, 158,0.5), rgba(0, 91, 158,0.5), transparent);
 }
 .step { position: relative; }
 .step-num {
@@ -1851,8 +1829,8 @@ opacity: 1;
   font-family: var(--font-display);
   font-size: 0.9rem;
   color: var(--gold-400);
-  background: #0d2927;
-  border: 1px solid rgba(201,162,39,0.55);
+  background: #062b6f;
+  border: 1px solid rgba(0, 91, 158,0.55);
 }
 .step h3 { font-size: 1.04rem; margin-bottom: 7px; }
 .step p { font-size: 0.9rem; margin: 0; }
@@ -1874,7 +1852,7 @@ opacity: 1;
   border: 1px solid var(--line);
   transition: transform var(--t), box-shadow var(--t);
 }
-.aud-card:hover { transform: translateY(-3px); box-shadow: 0 16px 38px -18px rgba(13, 41, 39, 0.28), 0 0 0 1px rgba(71, 179, 170, 0.1); }
+.aud-card:hover { transform: translateY(-3px); box-shadow: 0 16px 38px -18px rgba(6, 43, 111, 0.28), 0 0 0 1px rgba(74, 159, 216, 0.1); }
 .aud-card h3 { font-size: 1rem; margin-bottom: 8px; }
 .aud-card p { font-size: 0.88rem; color: var(--muted); margin: 0; }
 
@@ -1885,7 +1863,7 @@ opacity: 1;
   gap: 26px 44px;
   margin-top: 46px;
 }
-.why-item { padding-left: 22px; border-left: 2px solid; border-image: linear-gradient(180deg, var(--gold-500), rgba(201,162,39,0.1)) 1; }
+.why-item { padding-left: 22px; border-left: 2px solid; border-image: linear-gradient(180deg, var(--gold-500), rgba(0, 91, 158,0.1)) 1; }
 .why-item h3 { font-size: 1.06rem; margin-bottom: 7px; }
 .why-item p { font-size: 0.94rem; color: var(--muted); margin: 0; }
 
@@ -1911,7 +1889,7 @@ opacity: 1;
   min-height: 500px;
   border: 0;
   border-radius: 30px;
-  box-shadow: 0 36px 110px rgba(33, 39, 53, 0.16);
+  box-shadow: 0 36px 110px rgba(20, 30, 60, 0.16);
   display: block;
 }
 .chips { display: flex; flex-wrap: wrap; gap: 9px; margin: 22px 0; }
@@ -2029,7 +2007,7 @@ input:focus, select:focus, textarea:focus {
   outline: none;
   background: var(--paper);
   border-color: var(--navy-600);
-  box-shadow: 0 0 0 3px rgba(39,74,117,0.12);
+  box-shadow: 0 0 0 3px rgba(0, 91, 158,0.12);
 }
 input[aria-invalid="true"], select[aria-invalid="true"], textarea[aria-invalid="true"] {
   border-color: #c0392b;
@@ -2043,25 +2021,201 @@ textarea { resize: vertical; min-height: 108px; }
   font-weight: 600;
 }
 .form-status.is-error { color: #c0392b; }
-.form-status.is-ok { color: #1f7a4d; }
+.form-status.is-ok { color: #0f7d8c; }
 
 /* ---------- CTA band ---------- */
-.cta-band { padding: 86px 0; text-align: center; background-image: url("../assets/ready-bg.png"); background-position: center; background-size: cover; background-repeat: no-repeat; }
+.cta-band { padding: 86px 0; text-align: center; background-position: center; background-size: cover; background-repeat: no-repeat; }
 
-/* ready-bg.png runs from near-black to near-white across the frame, so no
-   single text colour survives on it unscrimmed. Same treatment as the service
-   heroes: a scrim sized for the brightest area, then light copy on top. The
-   blog CTA (.cta-band--solid) sits on its own light asset and is excluded. */
+/* Deep blue-to-teal gradient instead of a background photo, drifting slowly so
+   the band feels alive without pulling focus from the copy. Every stop stays
+   dark enough for white text. The blog CTA (.cta-band--solid) sits on its own
+   light blurred asset and is excluded. */
 .cta-band:not(.cta-band--solid) {
-  background-image:
-    linear-gradient(rgba(7, 24, 22, 0.74), rgba(7, 28, 26, 0.80)),
-    url("../assets/ready-bg.png");
+  background-color: #062b6f;
+  background-image: linear-gradient(
+    125deg,
+    #06265f 0%,
+    #062b6f 22%,
+    #082f78 48%,
+    #004e8e 72%,
+    #013c80 100%
+  );
+  background-size: 300% 300%;
+  background-position: 0% 50%;
+  animation: gradient-drift 28s ease-in-out infinite;
 }
 .cta-band:not(.cta-band--solid) h2 { color: #fff; }
 .cta-band:not(.cta-band--solid) .lede { color: rgba(255, 255, 255, 0.90); }
 .cta-band h2 { margin-bottom: 14px; }
 .cta-band .lede { margin: 0 auto 32px; }
 .cta-actions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+
+/* ---------- Drifting gradient bands ----------
+   Two shared keyframes move the gradient across an oversized background box.
+   Nothing layouts or repaints outside the band, and the global
+   prefers-reduced-motion rule further down stops both for anyone who asks. */
+@keyframes gradient-drift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes gradient-drift-soft {
+  0%   { background-position: 0% 50%, 100% 50%, 0% 50%; }
+  50%  { background-position: 100% 50%, 0% 50%, 100% 50%; }
+  100% { background-position: 0% 50%, 100% 50%, 0% 50%; }
+}
+
+/* ---------- Brand motion: document, signature, location ----------
+   Three motifs, each placed where it carries meaning, rather than three
+   effects competing inside one box:
+     document  - a faint ruled grid drifting under every feature surface
+     signature - an ink line that signs itself across the booking cards
+     location  - a slow locator pulse on the service-area block
+   All transform / background-position only, so they stay on the compositor,
+   and the global prefers-reduced-motion rule parks all three. */
+
+/* === 1. DOCUMENT: a record-keeping grid, drifting slowly ================== */
+@keyframes doc-drift {
+  from { background-position: 0 0; }
+  to   { background-position: 64px 64px; }
+}
+.section.aurora.on-dark::before,
+.closing-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-repeat: repeat;
+  animation: doc-drift 90s linear infinite;
+}
+.closing-card::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M0 63.5H64M63.5 0V64' stroke='%239ec5e8' stroke-width='1' opacity='0.20'/%3E%3C/svg%3E");
+  /* fade the grid out toward the copy so it never fights the text */
+  mask-image: linear-gradient(160deg, rgba(0,0,0,0.85), rgba(0,0,0,0.25) 62%, transparent);
+  -webkit-mask-image: linear-gradient(160deg, rgba(0,0,0,0.85), rgba(0,0,0,0.25) 62%, transparent);
+}
+.section.aurora.on-dark::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M0 63.5H64M63.5 0V64' stroke='%232563eb' stroke-width='1' opacity='0.10'/%3E%3C/svg%3E");
+  mask-image: linear-gradient(170deg, rgba(0,0,0,0.7), transparent 78%);
+  -webkit-mask-image: linear-gradient(170deg, rgba(0,0,0,0.7), transparent 78%);
+}
+
+/* === 2. SIGNATURE: an ink line that draws itself, then rests and repeats ==
+   The path is injected by script.js so the dash animation runs on a real SVG
+   element (a data-URI background cannot be dash-animated reliably). */
+.sig-ink {
+  position: absolute;
+  z-index: 0;
+  /* tucked into the free bottom-right corner: the buttons are left-aligned in
+     the copy column, and the outline button has a transparent fill, so a wider
+     flourish showed straight through its label. */
+  right: clamp(14px, 2%, 30px);
+  bottom: clamp(10px, 2.5%, 22px);
+  width: min(29%, 216px);
+  height: auto;
+  pointer-events: none;
+  overflow: visible;
+  /* The copy column narrows at some widths and the button row reaches further
+     right, so rather than chase breakpoints the ink fades out before its left
+     edge: it can never reach a label, whatever the column does. */
+  mask-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 1) 42%);
+  -webkit-mask-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 1) 42%);
+}
+.sig-ink path {
+  fill: none;
+  stroke: rgba(169, 212, 240, 0.62);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  /* --len is measured per path in script.js. A hardcoded dash pattern made the
+     stroke jump instead of draw, because the real paths are ~592 and ~233 long
+     while the pattern claimed 1400. */
+  stroke-dasharray: var(--len, 600);
+  stroke-dashoffset: var(--len, 600);
+  animation: sign-ink 3s ease-in-out infinite;
+}
+.sig-ink path:nth-child(2) {
+  stroke: rgba(74, 159, 216, 0.42);
+  stroke-width: 1.6;
+  animation-delay: 0.2s;
+}
+@keyframes sign-ink {
+  0%   { stroke-dashoffset: var(--len, 600); opacity: 0; }
+  6%   { opacity: 1; }
+  42%  { stroke-dashoffset: 0; opacity: 1; }
+  76%  { stroke-dashoffset: 0; opacity: 1; }
+  90%  { stroke-dashoffset: 0; opacity: 0; }
+  100% { stroke-dashoffset: var(--len, 600); opacity: 0; }
+}
+
+/* Below this width the card stacks and the buttons go full-bleed, so there is
+   no free corner left - decoration gives way to the label rather than sitting
+   behind its transparent fill. */
+@media (max-width: 760px) {
+  .sig-ink { display: none; }
+}
+
+/* === 3. LOCATION: a locator pulse on the service-area block ============== */
+.area-pulse {
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  top: 50%;
+  width: min(58%, 230px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.area-pulse span {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 91, 158, 0.30);
+  transform: scale(0.18);
+  opacity: 0;
+  animation: locate 7s ease-out infinite;
+}
+.area-pulse span:nth-child(2) { animation-delay: 2.33s; }
+.area-pulse span:nth-child(3) { animation-delay: 4.66s; }
+.area-pulse::after {
+  content: "";
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 9px; height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  border-radius: 50%;
+  background: rgba(0, 91, 158, 0.55);
+}
+@keyframes locate {
+  0%   { transform: scale(0.18); opacity: 0; }
+  12%  { opacity: 0.9; }
+  100% { transform: scale(1); opacity: 0; }
+}
+.home .section-area { position: relative; overflow: hidden; }
+.area-visual { position: relative; }
+.home .section-area > .wrap { position: relative; z-index: 1; }
+
+.closing-card { position: relative; }
+.closing-photo { z-index: 1; }
+.closing-copy { position: relative; z-index: 1; }
+
+/* The "how it works" step band. It runs light because its headings and step
+   copy are dark navy, so the tints stay pale and the two drifting colour blobs
+   (blue one way, teal the other) supply the movement. The stock aurora scrim
+   and orbs are suppressed here or they muddy the gradient. */
+.section.aurora.on-dark {
+  background-color: #f4f7fb;
+  background-image:
+    radial-gradient(58% 78% at 18% 26%, rgba(0, 91, 158, 0.16), transparent 62%),
+    radial-gradient(54% 74% at 82% 72%, rgba(0, 91, 158, 0.18), transparent 62%),
+    linear-gradient(125deg, #f4f7fb 0%, #e9eef7 38%, #ebf0f8 68%, #f4f7fb 100%);
+  background-size: 200% 200%, 200% 200%, 300% 300%;
+  background-position: 0% 50%, 100% 50%, 0% 50%;
+  animation: gradient-drift-soft 34s ease-in-out infinite;
+}
+.section.aurora.on-dark .aurora-bg,
+.section.aurora.on-dark .orb { display: none; }
 
 /* ---------- Breadcrumb ---------- */
 .crumbs { background: var(--mist); border-bottom: 1px solid var(--line); }
@@ -2080,9 +2234,9 @@ textarea { resize: vertical; min-height: 108px; }
 .site-footer {
   position: relative;
   overflow: hidden;
-  background: #0d2927;
-  color: rgba(235, 242, 239, 0.72);
-  border-top: 1px solid rgba(227, 193, 118, 0.24);
+  background: linear-gradient(180deg, #062b6f 0%, #06265f 55%, #061f52 100%);
+  color: rgba(235, 242, 246, 0.72);
+  border-top: 1px solid rgba(74, 159, 216, 0.24);
 }
 .site-footer::after {
   content: "MAKTUB";
@@ -2093,9 +2247,9 @@ textarea { resize: vertical; min-height: 108px; }
   color: transparent;
   background: linear-gradient(
   180deg,
-  rgba(230, 222, 172, 0.18) 0%,
-  rgba(154, 124, 55, 0.12) 38%,
-  rgba(229, 181, 7, 0.18) 100%
+  rgba(169, 212, 240, 0.18) 0%,
+  rgba(0, 91, 158, 0.14) 38%,
+  rgba(0, 91, 158, 0.18) 100%
 );
   background-clip: text;
   filter: blur(1px);
@@ -2106,7 +2260,7 @@ textarea { resize: vertical; min-height: 108px; }
   line-height: 0.86;
   letter-spacing: -0.09em;
   text-align: center;
-  -webkit-text-stroke: 1px rgba(240, 220, 172, 0.38);
+  -webkit-text-stroke: 1px rgba(169, 212, 240, 0.38);
   transform: translate3d(var(--cursor-drift-x, 0px), var(--cursor-drift-y, 0px), 0) scaleX(1.72);
   transform-origin: center;
   transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -2116,25 +2270,26 @@ textarea { resize: vertical; min-height: 108px; }
   max-width: var(--container);
   margin: 0 auto;
   padding: 32px 24px 22px;
-  border-bottom: 1px solid rgba(235, 242, 239, 0.16);
+  border-bottom: 1px solid rgba(235, 242, 246, 0.16);
 }
-.footer-intro p { max-width: 20ch; margin: 0; font-size: 0.84rem; line-height: 1.45; color: rgba(235, 242, 239, 0.72); }
+.footer-intro p { max-width: 20ch; margin: 0; font-size: 0.84rem; line-height: 1.45; color: rgba(235, 242, 246, 0.72); }
 .footer-intro strong { color: #fff; }
 .footer-inner {
   display: grid;
   grid-template-columns: 1.3fr 1fr 1fr 1fr;
   gap: 40px;
   padding: 42px 0;
-  border-bottom: 1px solid rgba(235, 242, 239, 0.16);
+  border-bottom: 1px solid rgba(235, 242, 246, 0.16);
 }
 .footer-brand-mark {
-  width: 58px; height: 58px;
-  border-radius: 50%;
+  /* a white plaque so the navy monogram reads on the dark footer */
+  width: 64px; height: 64px;
+  border-radius: 14px;
   background: #fff;
-  padding: 4px;
+  padding: 7px;
   margin-bottom: 16px;
 }
-.footer-brand-mark img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+.footer-brand-mark img { width: 100%; height: 100%; object-fit: contain; }
 .footer-name { font-family: var(--font-display); color: #fff; font-size: 1.16rem; margin-bottom: 6px; }
 .footer-tag { font-size: 0.89rem; margin: 0 0 18px; max-width: 30ch; }
 .footer-reach { margin: 0 0 18px; padding: 0; list-style: none; }
@@ -2142,7 +2297,7 @@ textarea { resize: vertical; min-height: 108px; }
 .footer-reach a { font-size: 0.89rem; font-weight: 600; color: var(--gold-300); }
 .footer-reach a:hover { color: #fff; }
 .footer-social { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 600; color: var(--gold-300); }
-.footer-social::before { content: "in"; display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid rgba(240, 220, 172, 0.38); border-radius: 50%; font-family: Georgia, serif; }
+.footer-social::before { content: "in"; display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid rgba(169, 212, 240, 0.38); border-radius: 50%; font-family: Georgia, serif; }
 .footer-col h3 {
   font-family: var(--font-body);
   font-size: 0.76rem;
@@ -2160,7 +2315,7 @@ textarea { resize: vertical; min-height: 108px; }
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 28px;
   padding-top: 26px;
-  border-top: 1px solid rgba(235, 242, 239, 0.16);
+  border-top: 1px solid rgba(235, 242, 246, 0.16);
 }
 .footer-contact h3 { margin: 0 0 11px; font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-300); }
 .footer-contact p { margin: 0 0 18px; font-size: 0.86rem; line-height: 1.55; }
@@ -2314,14 +2469,6 @@ textarea { resize: vertical; min-height: 108px; }
 
 /* Small phones and narrow split-screen windows */
 @media (max-width: 420px) {
-  .welcome-screen { padding: 16px; }
-  .welcome-stamp { width: min(166px, 52vw); margin-bottom: 20px; }
-  .welcome-stamp__ring { inset: 30px; }
-  .welcome-stamp__seal { width: 52px; font-size: 1.8rem; }
-  .welcome-stamp__top, .welcome-stamp__bottom { width: 124px; font-size: 0.48rem; }
-  .welcome-stamp__top { top: 24px; }
-  .welcome-stamp__bottom { bottom: 24px; }
-  .welcome-screen__title { font-size: 2rem; }
   .section { padding: 56px 0; }
   .section-sm { padding: 48px 0; }
   .h-xl { font-size: 2.15rem; }
@@ -2346,8 +2493,8 @@ textarea { resize: vertical; min-height: 108px; }
 /* ---------- Print ---------- */
 @media print {
   .site-header, .drawer, .cta-band, .site-footer, .orb, .aurora-bg { display: none !important; }
-  body { color: #04140f; }
-  .aurora { background: #fff; color: #04140f; }
+  body { color: #04101f; }
+  .aurora { background: #fff; color: #04101f; }
 }
 
 /* ---------- Reduced motion ---------- */
@@ -2436,7 +2583,7 @@ textarea { resize: vertical; min-height: 108px; }
    hero. On the pages whose hero stays light it needs the deep gold instead -
    at the light value it was measuring about 1.1:1. */
 .light-hero .hero .grad-text {
-  background-image: linear-gradient(96deg, var(--gold-700), #7d5a1e 50%, var(--gold-700));
+  background-image: linear-gradient(96deg, var(--gold-700), var(--teal-500) 50%, var(--gold-700));
 }
 
 /* ---------- Breadcrumb over the hero ----------
@@ -2460,7 +2607,7 @@ textarea { resize: vertical; min-height: 108px; }
 /* Light heroes need the deep gold instead of the pale one. */
 .light-hero .hero > .crumbs a,
 .light-hero .hero > .crumbs li,
-.light-hero .hero > .crumbs [aria-current]{ color: #654716; }
+.light-hero .hero > .crumbs [aria-current]{ color: #013c80; }
 .light-hero .hero > .crumbs li:not(:last-child)::after{ color: var(--gold-700); opacity: 0.6; }
 .light-hero .hero > .crumbs a:hover{ color: var(--navy-900); }
 
@@ -2517,7 +2664,7 @@ textarea { resize: vertical; min-height: 108px; }
   width: 52px; height: 52px;
   margin-bottom: 16px;
   border-radius: 50%;
-  background: rgba(201, 162, 39, 0.13);
+  background: rgba(0, 91, 158, 0.13);
   color: var(--gold-700);
 }
 .way-panel h3 { margin-bottom: 10px; font-size: 1.16rem; }
@@ -2541,7 +2688,7 @@ textarea { resize: vertical; min-height: 108px; }
 .benefit-card:hover {
   transform: translateY(-3px);
   border-color: var(--line-warm);
-  box-shadow: 0 20px 46px -22px rgba(13, 41, 39, 0.32);
+  box-shadow: 0 20px 46px -22px rgba(6, 43, 111, 0.32);
 }
 .benefit-icon {
   display: inline-flex;
@@ -2550,7 +2697,7 @@ textarea { resize: vertical; min-height: 108px; }
   width: 46px; height: 46px;
   margin-bottom: 16px;
   border-radius: 12px;
-  background: rgba(201, 162, 39, 0.13);
+  background: rgba(0, 91, 158, 0.13);
   color: var(--gold-700);
 }
 .benefit-card h3 { margin-bottom: 8px; font-size: 1.05rem; }
@@ -2569,7 +2716,7 @@ textarea { resize: vertical; min-height: 108px; }
   position: absolute;
   top: 23px; left: 12%; right: 12%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201,162,39,0.45), rgba(201,162,39,0.45), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 91, 158,0.45), rgba(0, 91, 158,0.45), transparent);
 }
 .flow-step { position: relative; text-align: center; }
 .flow-num {
@@ -2580,7 +2727,7 @@ textarea { resize: vertical; min-height: 108px; }
   margin: 0 auto 18px;
   border-radius: 50%;
   background: var(--navy-900);
-  border: 1px solid rgba(201,162,39,0.5);
+  border: 1px solid rgba(0, 91, 158,0.5);
   color: var(--gold-300);
   font-family: var(--font-display);
   font-size: 0.95rem;
@@ -2590,7 +2737,7 @@ textarea { resize: vertical; min-height: 108px; }
 
 /* --- The figures band --- */
 .figures-band { background-color: var(--navy-950); }
-.figures-band .aurora-bg::after { background: rgba(7, 28, 26, 0.55); }
+.figures-band .aurora-bg::after { background: rgba(4, 22, 52, 0.55); }
 .figure-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2601,7 +2748,7 @@ textarea { resize: vertical; min-height: 108px; }
   padding: clamp(24px, 3vw, 32px);
   border-radius: var(--r-lg);
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(240, 220, 172, 0.22);
+  border: 1px solid rgba(169, 212, 240, 0.22);
   text-align: center;
 }
 .figure-value {
@@ -2635,7 +2782,7 @@ textarea { resize: vertical; min-height: 108px; }
   align-items: center;
   gap: 9px;
   font-size: 0.94rem;
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(255, 255, 255, 0.95);
 }
 .cta-ticks svg { color: var(--gold-300); flex-shrink: 0; }
 
@@ -2656,7 +2803,7 @@ textarea { resize: vertical; min-height: 108px; }
 .figures-band .eyebrow-light,
 .cta-band:not(.cta-band--solid) .eyebrow-light { color: var(--gold-300); }
 /* the trust band runs light, so its eyebrow takes the deep gold instead */
-.trust-band .eyebrow-light { color: #654716; }
+.trust-band .eyebrow-light { color: #013c80; }
 
 /* =========================================================================
    Service pages, second reference (phonepe.com/payments device set)
@@ -2670,7 +2817,7 @@ textarea { resize: vertical; min-height: 108px; }
   display: inline-flex; align-items: center; justify-content: center;
   width: 42px; height: 42px; flex-shrink: 0;
   border-radius: 12px;
-  background: rgba(201, 162, 39, 0.13);
+  background: rgba(0, 91, 158, 0.13);
   color: var(--gold-700);
 }
 .tri-card h3 { margin-bottom: 4px; font-size: 1rem; }
@@ -2730,7 +2877,7 @@ textarea { resize: vertical; min-height: 108px; }
   width: 42px; height: 42px;
   margin-bottom: 14px;
   border-radius: 12px;
-  background: rgba(201, 162, 39, 0.13);
+  background: rgba(0, 91, 158, 0.13);
   color: var(--gold-700);
 }
 .rail-card h3 { margin-bottom: 12px; font-size: 1.02rem; }
@@ -2868,8 +3015,8 @@ textarea { resize: vertical; min-height: 108px; }
 .spot-mesh {
   inset: 8% 4% 10% 8%;
   background-image:
-    linear-gradient(to right, rgba(13,41,39,0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(13,41,39,0.08) 1px, transparent 1px);
+    linear-gradient(to right, rgba(6, 43, 111,0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(6, 43, 111,0.08) 1px, transparent 1px);
   background-size: 34px 34px;
 }
 .spot-block {
@@ -2885,7 +3032,7 @@ textarea { resize: vertical; min-height: 108px; }
   background-position: center;
   background-size: cover;
   background-image: url("https://images.unsplash.com/photo-1562564055-71e051d33c19?auto=format&fit=crop&w=900&q=70");
-  box-shadow: 0 26px 60px -26px rgba(13, 41, 39, 0.55);
+  box-shadow: 0 26px 60px -26px rgba(6, 43, 111, 0.55);
   filter: grayscale(1) contrast(1.06);
 }
 .spot-wave {
@@ -2900,7 +3047,7 @@ textarea { resize: vertical; min-height: 108px; }
   padding: 10px;
   border-radius: 18px;
   background: var(--paper);
-  box-shadow: 0 18px 40px -18px rgba(13, 41, 39, 0.5);
+  box-shadow: 0 18px 40px -18px rgba(6, 43, 111, 0.5);
 }
 .spot-chip {
   padding: 7px 15px;
@@ -2908,7 +3055,7 @@ textarea { resize: vertical; min-height: 108px; }
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  box-shadow: 0 10px 26px -12px rgba(13, 41, 39, 0.5);
+  box-shadow: 0 10px 26px -12px rgba(6, 43, 111, 0.5);
 }
 .spot-chip--done {
   top: 1%; left: 30%;
@@ -2963,7 +3110,7 @@ textarea { resize: vertical; min-height: 108px; }
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, var(--navy-950) 0%, rgba(7, 24, 22, 0.92) 26%, rgba(7, 24, 22, 0.34) 68%, rgba(7, 24, 22, 0.34) 100%);
+  background: linear-gradient(90deg, var(--navy-950) 0%, rgba(4, 22, 52, 0.92) 26%, rgba(4, 22, 52, 0.34) 68%, rgba(4, 22, 52, 0.34) 100%);
 }
 .split-hero-inner { position: relative; z-index: 2; }
 .split-hero-copy { max-width: 560px; }
@@ -3016,7 +3163,7 @@ textarea { resize: vertical; min-height: 108px; }
 /* Capability strip */
 .capability-row {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0;
   margin: 0;
   padding: 0;
@@ -3142,18 +3289,40 @@ textarea { resize: vertical; min-height: 108px; }
   align-items: stretch;
   overflow: hidden;
   border-radius: var(--r-lg);
-  background: linear-gradient(150deg, var(--navy-900), var(--navy-950));
+  /* Same drifting blue-to-teal treatment as the full-bleed CTA band, so the
+     closing card on About and Contact reads as the same moment. */
+  background-color: #062b6f;
+  background-image: linear-gradient(
+    150deg,
+    #06265f 0%,
+    #062b6f 22%,
+    #082f78 48%,
+    #004e8e 72%,
+    #013c80 100%
+  );
+  background-size: 300% 300%;
+  background-position: 0% 50%;
+  animation: gradient-drift 28s ease-in-out infinite;
   box-shadow: var(--sh-md);
 }
 .closing-photo { position: relative; min-height: 260px; }
 .closing-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .closing-copy { padding: clamp(30px, 4vw, 52px); }
 .closing-copy h2 { margin: 0 0 12px; color: #fff; }
-.closing-copy p { margin: 0 0 24px; color: rgba(255, 255, 255, 0.86); }
+.closing-copy p { margin: 0 0 24px; color: rgba(255, 255, 255, 0.94); }
 .closing-copy .cta-actions { justify-content: flex-start; }
+/* Inside the card the copy column is narrower than the old full-bleed band, so
+   the tick list stacks and left-aligns instead of running as a centred row. */
+.closing-copy .cta-ticks {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+  margin: 0 0 26px;
+}
 .btn-outline-light {
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.80);
+  background: rgba(255, 255, 255, 0.07);
   color: #fff;
 }
 .btn-outline-light:hover { background: rgba(255, 255, 255, 0.12); border-color: #fff; }
@@ -3169,7 +3338,7 @@ textarea { resize: vertical; min-height: 108px; }
   .split-hero { padding-top: clamp(76px, 14vw, 110px); }
   .split-hero-photo { inset: 0; }
   .split-hero-photo::after {
-    background: linear-gradient(180deg, rgba(7, 24, 22, 0.9), rgba(7, 24, 22, 0.82));
+    background: linear-gradient(180deg, rgba(4, 22, 52, 0.9), rgba(4, 22, 52, 0.82));
   }
   .split-hero-copy { max-width: none; }
   .story-grid { grid-template-columns: 1fr; gap: 28px; }
@@ -3211,7 +3380,7 @@ textarea { resize: vertical; min-height: 108px; }
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, var(--mist) 0%, rgba(246, 242, 233, 0.97) 24%, rgba(246, 242, 233, 0.18) 66%, rgba(246, 242, 233, 0) 100%);
+  background: linear-gradient(90deg, var(--mist) 0%, rgba(238, 244, 249, 0.97) 24%, rgba(238, 244, 249, 0.18) 66%, rgba(238, 244, 249, 0) 100%);
 }
 .contact-hero > .crumbs { z-index: 4; }
 .contact-hero-inner { position: relative; z-index: 2; }
@@ -3293,7 +3462,7 @@ textarea { resize: vertical; min-height: 108px; }
   border-radius: var(--r-lg);
   background: var(--mist);
 }
-.area-art { color: var(--navy-800, #16403c); opacity: 0.75; }
+.area-art { color: var(--navy-800, #013c80); opacity: 0.75; }
 .area-art svg { display: block; width: 100%; height: auto; }
 .area-copy h2 { margin: 0 0 14px; color: var(--navy-900); }
 .area-copy p { margin: 0 0 22px; color: var(--ink); }
@@ -3327,7 +3496,7 @@ textarea { resize: vertical; min-height: 108px; }
 @media (max-width: 900px) {
   .contact-hero { padding-top: clamp(64px, 12vw, 92px); }
   .contact-hero-photo { inset: 0; }
-  .contact-hero-photo::after { background: linear-gradient(180deg, rgba(246, 242, 233, 0.95), rgba(246, 242, 233, 0.9)); }
+  .contact-hero-photo::after { background: linear-gradient(180deg, rgba(238, 244, 249, 0.95), rgba(238, 244, 249, 0.9)); }
   .contact-hero-copy { max-width: none; }
   .area-card { grid-template-columns: 1fr; }
 }
@@ -3336,4 +3505,320 @@ textarea { resize: vertical; min-height: 108px; }
   .help-grid { grid-template-columns: 1fr; }
   .reach-row { grid-template-columns: 1fr; }
   .reach-row > li { border-left: 0 !important; }
+}
+
+/* ==========================================================================
+   Homepage - modern restyle
+   Scoped to body.home throughout, so the rest of the site is unaffected.
+   Four moves: a tighter vertical rhythm, a larger and tighter display type
+   scale, one calm cool surface instead of warm/cool tint alternation, and
+   flatter cards that rely on a border rather than a wash plus shadow.
+   ========================================================================== */
+
+/* --- rhythm: slightly tighter, and scaling with the viewport rather than fixed --- */
+.home .section { padding: clamp(60px, 6.4vw, 98px) 0; }
+.home .section-sm { padding: clamp(44px, 4.6vw, 68px) 0; }
+
+/* --- surfaces: the page alternated cool mist against warm cream, which reads
+       dated. One cool tint at two depths gives rhythm without the clash. --- */
+.home .section-mist { background: #f4f7fb; }
+.home .section-warm { background: #f4f7fb; }
+.home .section-warm.section-area { background: #e9eef7; }
+
+/* --- display type: larger, tighter tracking and leading. text-wrap: balance
+       stops single-word orphans on the headline without manual <br>. --- */
+.home h1.h-xl {
+  font-size: clamp(2.6rem, 5.9vw, 4.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.022em;
+  text-wrap: balance;
+}
+.home h2.h-lg {
+  font-size: clamp(2rem, 3.8vw, 2.95rem);
+  line-height: 1.12;
+  letter-spacing: -0.018em;
+  text-wrap: balance;
+}
+.home h3 { letter-spacing: -0.008em; }
+.home .lede {
+  font-size: clamp(1.04rem, 1.15vw, 1.16rem);
+  line-height: 1.72;
+  text-wrap: pretty;
+}
+
+/* --- heading blocks: more air under the intro, and a measured lede.
+       .stack-cta is excluded - those .center blocks are button rows. --- */
+.home .section .center:not(.stack-cta) { margin-bottom: clamp(34px, 3.4vw, 52px); }
+.home .section .center:not(.stack-cta) .lede { margin-left: auto; margin-right: auto; max-width: 56ch; }
+.home .eyebrow { margin-bottom: 16px; }
+
+/* --- cards: drop the diagonal wash and lean on a crisp border; lift on hover
+       with a shorter, tighter shadow instead of a large soft one. --- */
+.home .bento-card {
+  padding: clamp(26px, 2.4vw, 34px) clamp(24px, 2.2vw, 32px);
+  border-radius: 18px;
+  background-image: none;
+  border-color: #dae1ee;
+}
+.home .bento-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold-400);
+  box-shadow: 0 14px 30px -16px rgba(6, 43, 111, 0.28);
+}
+.home .stat, .home .price-card, .home .aud-card { border-radius: 16px; }
+
+/* --- capability strip: a touch more room per item so the icons breathe --- */
+.home .capability-row li > a { padding: clamp(18px, 2vw, 26px) 14px; }
+
+
+/* ==========================================================================
+   Real imagery in place of the illustration stand-ins
+   ========================================================================== */
+
+/* The dark panel used to centre a line-art SVG; it now frames a photograph
+   edge to edge, so the inner padding goes and the image fills the radius. */
+.visual-photo {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  object-fit: cover;
+  border-radius: inherit;
+  display: block;
+}
+
+/* Every service page was showing the same inset photo (the general-notary
+   one). Each now carries an image matching its own subject, and the grayscale
+   filter is eased so they read as photographs rather than washed-out texture. */
+.general-notary .spot-photo { background-image: url("https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=70"); }
+.loan-signings .spot-photo { background-image: url("https://images.unsplash.com/photo-1529245019870-59b9b3eb6d8e?auto=format&fit=crop&w=900&q=70"); }
+.estate-planning .spot-photo { background-image: url("https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=70"); }
+.remote-online-notarization .spot-photo { background-image: url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=70"); }
+.business-notary .spot-photo { background-image: url("https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=900&q=70"); }
+.spot-photo { filter: grayscale(0.55) contrast(1.04); }
+
+
+/* ==========================================================================
+   Gold accents, from the logo
+   Gold appears in the logo as three things only: the star, the pen-nib dot,
+   and the hairlines flanking "MOBILE NOTARY". So it is used here the same way -
+   small marks, hairline rules and the ink detail - never as a fill or a
+   large field. --gold on dark ground, --gold-ink on light.
+   ========================================================================== */
+
+/* the dash before every eyebrow: the logo's flanking rule */
+.eyebrow::before { background: var(--gold-ink) !important; opacity: 1; }
+.on-dark .eyebrow::before,
+.hero .eyebrow::before,
+.cta-band .eyebrow::before { background: var(--gold) !important; }
+.section.aurora.on-dark .eyebrow::before { background: var(--gold-ink) !important; }
+
+/* section seam hairline */
+.seam { background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: 0.55; }
+
+/* tick marks: gold on the dark cards, deepened on light sections.
+   The booking card's gradient reaches a bright royal blue where the logo gold
+   measured only 2.72:1, so that surface takes the lifted gold (3.55:1). */
+.cta-ticks svg { color: var(--gold); }
+.checklist svg { color: var(--gold-ink); }
+.on-dark .checklist svg { color: var(--gold); }
+/* last, so it wins: the card's gradient reaches a bright royal blue where the
+   logo gold measured only 2.72:1, so that one surface takes the lifted gold. */
+.closing-copy .cta-ticks svg,
+.closing-copy .checklist svg { color: var(--gold-lift); }
+
+/* the pen writes in gold, like the nib dot in the mark */
+.sig-ink path { stroke: rgba(201, 171, 99, 0.68) !important; }
+.sig-ink path:nth-child(2) { stroke: rgba(220, 196, 138, 0.42) !important; }
+
+/* hairline rule under the big figures, and the locator dot */
+.statline-value { color: var(--gold-ink); }
+.figures-band .statline-value,
+.on-dark .statline-value { color: var(--gold); }
+.area-pulse::after { background: var(--gold) !important; }
+.area-pulse span { border-color: rgba(201, 171, 99, 0.38) !important; }
+
+/* a gold hairline above the footer, echoing the logo lock-up */
+.site-footer { border-top: 1px solid rgba(201, 171, 99, 0.42); }
+
+/* ==========================================================================
+   Gradient & gold polish layer
+   --------------------------------------------------------------------------
+   Deepens the blue with directional gradients and threads the logo's antique
+   gold through the page as hairlines and rules. Appended last on purpose:
+   every rule here is additive and can be lifted out in one block.
+
+   Gold has two tiers, as elsewhere in this sheet: --gold on dark grounds,
+   --gold-ink on light ones. The mid gold fails contrast on white, so it never
+   carries text or a meaningful edge on a pale surface.
+   ========================================================================== */
+
+:root {
+  /* Directional blues. No stop is lighter than #0a3a86 on the text-bearing
+     bands, or the small grey captions drop below 4.5:1. */
+  --grad-band: linear-gradient(122deg, #05204d 0%, #062b6f 46%, #0a3a86 100%);
+  --grad-mist: linear-gradient(176deg, #f7fafd 0%, #e9f0f9 54%, #f4f8fc 100%);
+  --grad-warm: linear-gradient(174deg, #fbfcfe 0%, #f1f5fb 100%);
+  --grad-btn: linear-gradient(135deg, #062b6f 0%, #013c80 52%, #00558f 100%);
+  --grad-btn-hover: linear-gradient(135deg, #082f78 0%, #004e8e 52%, #0066a8 100%);
+  --grad-wash: linear-gradient(152deg, rgba(0, 91, 158, 0.085) 0%, rgba(0, 91, 158, 0) 46%);
+
+  /* Centre-weighted gold rules, echoing the lock-up's MOBILE NOTARY lines. */
+  --gold-rule: linear-gradient(90deg, rgba(201, 171, 99, 0) 0%, rgba(201, 171, 99, 0.9) 26%, #efdca8 50%, rgba(201, 171, 99, 0.9) 74%, rgba(201, 171, 99, 0) 100%);
+  --gold-rule-ink: linear-gradient(90deg, rgba(125, 106, 46, 0) 0%, rgba(125, 106, 46, 0.85) 26%, #a58f4c 50%, rgba(125, 106, 46, 0.85) 74%, rgba(125, 106, 46, 0) 100%);
+  --gold-hair: rgba(201, 171, 99, 0.42);
+}
+
+/* ---- 1. a gold rule under every section heading ---- */
+.h-lg::after,
+.section-head h2::after {
+  content: "";
+  display: block;
+  width: 78px;
+  height: 2px;
+  margin-top: 17px;
+  border-radius: 2px;
+  background: var(--gold-rule-ink);
+}
+.center > .h-lg::after,
+.section-head.center h2::after { margin-left: auto; margin-right: auto; }
+/* on the navy CTA card the rule needs the bright tier */
+.closing-copy .h-lg::after,
+.cta-band .h-lg::after { background: var(--gold-rule); }
+
+/* ---- 2. gradient blue on the section headings ---- */
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .h-lg,
+  .section-head h2 {
+    background-image: linear-gradient(96deg, #062b6f 0%, #013c80 44%, #005b9e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  /* dark grounds keep the solid light heading they already had */
+  .closing-copy .h-lg,
+  .cta-band .h-lg,
+  .contact-page main .closing-card .h-lg {
+    background-image: none;
+    -webkit-text-fill-color: #fff;
+  }
+  /* the ::after rules must not inherit the text clip, or they disappear */
+  .h-lg::after,
+  .section-head h2::after { -webkit-text-fill-color: initial; }
+}
+
+/* ---- 3. cards: blue corner wash + a gold top edge that lifts on hover ---- */
+.bento-card,
+.home .bento-card { background-image: var(--grad-wash); }
+.bento-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  z-index: 2;
+  background: var(--gold-rule);
+  opacity: 0.5;
+  transition: opacity var(--t);
+}
+.bento-card:hover::before,
+.bento-card.is-hovered::before { opacity: 1; }
+
+/* ---- 4. primary button: gradient body, gold hairline ---- */
+.btn-gold {
+  background-image: var(--grad-btn);
+  box-shadow: 0 10px 24px -12px rgba(6, 43, 111, 0.55), inset 0 0 0 1px rgba(201, 171, 99, 0.3);
+}
+.btn-gold:hover {
+  background-image: var(--grad-btn-hover);
+  box-shadow: 0 14px 30px -12px rgba(6, 43, 111, 0.6), inset 0 0 0 1px rgba(201, 171, 99, 0.5);
+}
+/* the light-on-dark variants stay white, with the hairline in gold */
+.closing-copy .btn-gold,
+body:not(.light-hero) .hero .btn-gold {
+  background-image: none;
+  background: #fff;
+  color: var(--navy-900);
+  box-shadow: 0 10px 26px -14px rgba(4, 22, 52, 0.5), inset 0 0 0 1px rgba(201, 171, 99, 0.55);
+}
+.closing-copy .btn-gold:hover,
+body:not(.light-hero) .hero .btn-gold:hover { background: #f4f8fc; }
+.editor-topbar .btn-gold { background-image: none; background: #062b6f; box-shadow: none; }
+
+/* ---- 5. trust bar: directional navy with gold hairlines top and bottom ---- */
+.trustbar { position: relative; background: var(--grad-band); }
+.trustbar::before,
+.trustbar::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: var(--gold-rule);
+  opacity: 0.6;
+}
+.trustbar::before { top: 0; }
+.trustbar::after { bottom: 0; }
+.trust-item p { color: #c9d9ec; }
+
+/* ---- 6. section grounds get a soft vertical gradient ---- */
+.section-mist,
+.home .section-mist { background-image: var(--grad-mist); }
+.section-warm { background-image: var(--grad-warm); }
+
+/* ---- 7. step markers: gradient disc, gold ring ---- */
+.step-num {
+  color: #fff;
+  background-image: linear-gradient(140deg, #082f78 0%, #013c80 55%, #005b9e 100%);
+  border-color: rgba(201, 171, 99, 0.6);
+  box-shadow: 0 0 0 4px rgba(201, 171, 99, 0.1);
+}
+.steps::before {
+  background: linear-gradient(90deg, transparent, rgba(201, 171, 99, 0.55) 20%, rgba(201, 171, 99, 0.55) 80%, transparent);
+}
+
+/* ---- 8. hero stat cards ---- */
+.stat { position: relative; overflow: hidden; background-image: var(--grad-wash); }
+.stat::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gold-rule);
+  opacity: 0.65;
+}
+
+/* ---- 9. area chips pick up gold on hover ---- */
+.chip { transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+.chip:hover { border-color: rgba(201, 171, 99, 0.75); box-shadow: 0 5px 16px -9px rgba(6, 43, 111, 0.45); }
+
+/* ---- 10. pricing panel: gold hairline beneath the gradient head ---- */
+.price-head { box-shadow: inset 0 -2px 0 0 rgba(201, 171, 99, 0.6); }
+
+/* ---- 11. capability strip: gold dividers and hover icon ---- */
+.capability-row li + li {
+  border-left-color: transparent;
+  background-image: linear-gradient(180deg, transparent 0%, rgba(201, 171, 99, 0.5) 22%, rgba(201, 171, 99, 0.5) 78%, transparent 100%);
+  background-size: 1px 100%;
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+.capability-row li > a:hover .cap-ico,
+.capability-row li > a:focus-visible .cap-ico { color: var(--gold-ink); }
+
+/* ---- 12. closing CTA card: gold hairline frame ---- */
+.closing-card { box-shadow: inset 0 0 0 1px rgba(201, 171, 99, 0.34); }
+
+/* ---- 13. the map panel gets the blue wash rather than sitting flat ---- */
+.area-visual { border-radius: 30px; background-image: var(--grad-wash); }
+
+/* ---- 14. FAQ: gold ring on the open row ---- */
+.faq-q[aria-expanded="true"] .faq-ico { border-color: rgba(201, 171, 99, 0.75); }
+
+/* ---- 15. footer: gold rule above the legal line ---- */
+.footer-bottom { position: relative; margin-top: 4px; }
+.footer-bottom::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--gold-rule);
+  opacity: 0.5;
 }

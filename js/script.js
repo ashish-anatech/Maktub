@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Maktub Signature Services - site scripts
+   Maktub Mobile Notary - site scripts
    Vanilla JS. No dependencies.
    Handles: mobile drawer + submenu, sticky header, FAQ accordion,
             scroll reveal, booking form validation, footer year.
@@ -124,10 +124,10 @@ var NEWSLETTER_ENDPOINT = "";
       image: data.cover || SITE_ORIGIN + "/assets/logo.png",
       datePublished: isoDate,
       mainEntityOfPage: url,
-      author: { "@type": "Organization", name: "Maktub Signature Services" },
+      author: { "@type": "Organization", name: "Maktub Mobile Notary" },
       publisher: {
         "@type": "Organization",
-        name: "Maktub Signature Services",
+        name: "Maktub Mobile Notary",
         logo: { "@type": "ImageObject", url: SITE_ORIGIN + "/assets/logo.png" }
       }
     }, null, 2);
@@ -143,9 +143,9 @@ var NEWSLETTER_ENDPOINT = "";
     }
     return '<header class="site-header" id="site-header">\n' +
 '  <div class="header-inner">\n' +
-'    <a href="/" class="brand" aria-label="Maktub Signature Services home page">\n' +
-'      <img class="brand-mark" src="/assets/logo.png" width="44" height="44" alt="Maktub Signature Services notary seal" fetchpriority="high">\n' +
-'      <span class="brand-text"><span class="brand-name">Maktub</span><span class="brand-sub">Signature Services</span></span>\n' +
+'    <a href="/" class="brand" aria-label="Maktub Mobile Notary home page">\n' +
+'      <img class="brand-mark" src="/assets/logo-mark.png" width="44" height="44" alt="Maktub Mobile Notary logo" fetchpriority="high">\n' +
+'      <span class="brand-text"><span class="brand-name">Maktub</span><span class="brand-sub">Mobile Notary</span></span>\n' +
 '    </a>\n' +
 '    <nav class="nav" aria-label="Primary">\n' +
 '      <ul>\n' +
@@ -168,7 +168,7 @@ var NEWSLETTER_ENDPOINT = "";
 '      </ul>\n' +
 '    </nav>\n' +
 '    <div class="header-actions">\n' +
-'      <a class="header-phone" href="tel:' + CONTACT.telHref + '" aria-label="Call Maktub Signature Services at ' + CONTACT.phone + '"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 1.9.6 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.8.6a2 2 0 0 1 1.7 2z"/><\/svg><span>' + CONTACT.phone + '<\/span></a>\n' +
+'      <a class="header-phone" href="tel:' + CONTACT.telHref + '" aria-label="Call Maktub Mobile Notary at ' + CONTACT.phone + '"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 1.9.6 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.8.6a2 2 0 0 1 1.7 2z"/><\/svg><span>' + CONTACT.phone + '<\/span></a>\n' +
 '      <a href="/blog/" class="btn btn-outline btn-sm">Back to blog</a><a href="/contact/" class="btn btn-navy btn-sm">Book a Notary</a>\n' +
 '      <button class="burger" id="burger" aria-expanded="false" aria-controls="drawer" aria-label="Open menu"><span></span><span></span><span></span></button>\n' +
 '    </div>\n' +
@@ -232,7 +232,7 @@ var NEWSLETTER_ENDPOINT = "";
 '  <link rel="canonical" href="' + url + '">\n' +
 '\n' +
 '  <meta property="og:type" content="article">\n' +
-'  <meta property="og:site_name" content="Maktub Signature Services">\n' +
+'  <meta property="og:site_name" content="Maktub Mobile Notary">\n' +
 '  <meta property="og:title" content="' + escapeHtml(socialTitle) + '">\n' +
 '  <meta property="og:description" content="' + escapeHtml(socialDescription) + '">\n' +
 '  <meta property="og:url" content="' + url + '">\n' +
@@ -537,41 +537,9 @@ renderBody(data.content) +
     }
   }
 
-  /* ---------- Welcome screen ---------- */
-  function showWelcome() {
-    var welcome = document.createElement("div");
-    welcome.className = "welcome-screen";
-    welcome.setAttribute("role", "status");
-    welcome.setAttribute("aria-label", "Welcome to Maktub Signature Services");
-    welcome.innerHTML =
-      '<div class="welcome-screen__content">' +
-        '<div class="welcome-stamp" aria-hidden="true">' +
-          '<span class="welcome-stamp__ring"></span>' +
-          '<span class="welcome-stamp__seal">M</span>' +
-          '<span class="welcome-stamp__top">Notary Public</span>' +
-          '<span class="welcome-stamp__bottom">Tacoma, Washington</span>' +
-        '</div>' +
-        '<strong class="welcome-screen__title">Welcome to Maktub<br>Signature Services</strong>' +
-      "</div>";
-
-    document.body.appendChild(welcome);
-
-    if (reduceMotion) {
-      welcome.remove();
-      return;
-    }
-
-    window.setTimeout(function () {
-      welcome.classList.add("is-leaving");
-      window.setTimeout(function () {
-        welcome.remove();
-      }, 500);
-    }, 1200);
-  }
-
-  // Show the intro only when entering or refreshing the home page.
-  var currentPath = window.location.pathname.replace(/\/+$/, "");
-  if (!currentPath || currentPath === "/index.html") showWelcome();
+  /* ---------- Home page logo reveal ----------
+     The 3s pen-drawing intro lives in js/logo-reveal.js and is wired into
+     index.html directly, so nothing is injected from here. */
 
   /* ---------- Footer year ---------- */
   var yearEl = document.getElementById("year");
@@ -664,30 +632,35 @@ renderBody(data.content) +
     }
   );
 
-  /* ---------- FAQ accordion ---------- */
-  var faqButtons = document.querySelectorAll(".faq-q");
-  Array.prototype.forEach.call(faqButtons, function (btn) {
-    var panel = btn.nextElementSibling;
-    if (!panel) return;
+  /* ---------- FAQ accordion ----------
+     bindFaqAccordion() is reusable so FAQ blocks injected later (eg. the
+     per-article FAQ section on blog posts) get the same click-to-expand
+     behaviour without duplicating this logic. */
+  function bindFaqAccordion(buttons) {
+    Array.prototype.forEach.call(buttons, function (btn) {
+      var panel = btn.nextElementSibling;
+      if (!panel) return;
 
-    btn.addEventListener("click", function () {
-      var isOpen = btn.getAttribute("aria-expanded") === "true";
+      btn.addEventListener("click", function () {
+        var isOpen = btn.getAttribute("aria-expanded") === "true";
 
-      // Single-open accordion keeps the page tidy
-      Array.prototype.forEach.call(faqButtons, function (other) {
-        if (other === btn) return;
-        other.setAttribute("aria-expanded", "false");
-        if (other.nextElementSibling) other.nextElementSibling.style.maxHeight = null;
+        // Single-open accordion keeps the page tidy
+        Array.prototype.forEach.call(document.querySelectorAll(".faq-q"), function (other) {
+          if (other === btn) return;
+          other.setAttribute("aria-expanded", "false");
+          if (other.nextElementSibling) other.nextElementSibling.style.maxHeight = null;
+        });
+
+        btn.setAttribute("aria-expanded", isOpen ? "false" : "true");
+        panel.style.maxHeight = isOpen ? null : panel.scrollHeight + "px";
       });
-
-      btn.setAttribute("aria-expanded", isOpen ? "false" : "true");
-      panel.style.maxHeight = isOpen ? null : panel.scrollHeight + "px";
     });
-  });
+  }
+  bindFaqAccordion(document.querySelectorAll(".faq-q"));
 
   // Keep an open answer correctly sized if the viewport reflows
   window.addEventListener("resize", function () {
-    Array.prototype.forEach.call(faqButtons, function (btn) {
+    Array.prototype.forEach.call(document.querySelectorAll(".faq-q"), function (btn) {
       if (btn.getAttribute("aria-expanded") === "true" && btn.nextElementSibling) {
         btn.nextElementSibling.style.maxHeight = btn.nextElementSibling.scrollHeight + "px";
       }
@@ -911,6 +884,43 @@ renderBody(data.content) +
     { slug: "corporate-document-signings", title: "Corporate document signings made simple", cat: "Business Notary", date: "February 15, 2026", read: "3 min read", cover: ["https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1400&q=85", "Business team reviewing a document"] }
   ];
 
+  /* One short, relevant FAQ trio per service category, appended to the end
+     of every blog article that belongs to that category. Answers stay
+     consistent with the sitewide FAQ page - eg. never implying a notary can
+     draft documents or give legal advice. */
+  var FAQS_BY_CATEGORY = {
+    "General Notary": [
+      { q: "What do I need to bring to my appointment?", a: "A valid, unexpired government-issued photo ID and the complete document, unsigned. Washington notaries must witness the signature, so please do not sign ahead of time." },
+      { q: "Can you tell me how to fill out my document?", a: "No. A notary public verifies identity and witnesses signatures, but cannot draft documents, choose which form you need, or explain a document's legal effect. For that, please speak with an attorney." },
+      { q: "Do all signers need to be present?", a: "Yes. Everyone signing the document must appear in person, or on a live remote online session, with valid ID at the time of notarization." }
+    ],
+    "Loan Signings": [
+      { q: "Can you handle loan signings for my company?", a: "Yes. We work with lenders, title and escrow companies, signing services, and real estate professionals on purchase, refinance, HELOC, and reverse mortgage packages." },
+      { q: "How long does a loan signing take?", a: "Most closings take 45 to 75 minutes, depending on the size of the package and the number of signers." },
+      { q: "What happens if a document needs a correction at the table?", a: "We flag it immediately and coordinate with your title or escrow contact before proceeding, since a notary cannot alter loan documents." }
+    ],
+    "Estate Planning": [
+      { q: "Can a notary help me write my will?", a: "No. Notaries cannot draft documents or give legal advice. We notarize the signatures once your documents are already prepared." },
+      { q: "Do witnesses need to be present too?", a: "Some estate documents require witnesses in addition to notarization. Check your document's instructions, or ask an attorney beforehand, so we can plan the appointment correctly." },
+      { q: "Can you notarize a power of attorney?", a: "Yes. Powers of attorney are one of the most common estate planning documents we notarize." }
+    ],
+    "Document Authentication": [
+      { q: "What is the difference between a certified copy and an authentication?", a: "A certified copy verifies that a document is a true copy of the original. An authentication certifies a document for use in another state or country. Confirm with the receiving organization which one it actually needs." },
+      { q: "Can you certify a copy of any document?", a: "Some documents, such as vital records, must be certified by their issuing agency rather than a notary. Ask the receiving organization first." },
+      { q: "How do I know what a receiving country or state requires?", a: "Contact the receiving organization or the relevant consulate directly. Requirements vary and a notary cannot provide legal guidance on this." }
+    ],
+    "Mobile Notary": [
+      { q: "Do you come to me, or do I come to you?", a: "Either works. We offer mobile appointments at your home, office, or hospital, in addition to sessions where you come to us." },
+      { q: "Is there an extra fee for mobile appointments?", a: "Yes. Travel fees apply based on distance and are quoted and confirmed before the appointment." },
+      { q: "Can you notarize in a hospital or care facility?", a: "Yes. We regularly visit hospitals and care facilities. Call ahead so we can confirm visiting hours and access." }
+    ],
+    "Business Notary": [
+      { q: "What business documents can you notarize?", a: "Contracts, resolutions, LLC formation documents, corporate minutes, and other business paperwork." },
+      { q: "Can you come to our office for multiple signers?", a: "Yes. We can schedule a single visit for multiple employees or officers signing the same or different documents." },
+      { q: "Do you offer recurring service for our company?", a: "Yes. Many businesses set up standing appointments for regular signing needs - contact us to arrange it." }
+    ]
+  };
+
   var ICON = {
     user: '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
     cal: '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>',
@@ -962,7 +972,6 @@ renderBody(data.content) +
     var heroMeta = document.querySelector(".hero .article-meta");
     if (heroMeta && post) {
       heroMeta.innerHTML =
-        '<span class="meta-bit">' + ICON.user + 'Maktub Signature Services</span>' +
         '<span class="meta-bit">' + ICON.cal + post.date + '</span>' +
         '<span class="meta-bit">' + ICON.folder + post.cat + '</span>' +
         '<span class="meta-bit">' + ICON.clock + post.read + '</span>';
@@ -978,6 +987,20 @@ renderBody(data.content) +
       cover.className = "article-cover";
       cover.innerHTML = '<img src="' + post.cover[0] + '" alt="' + post.cover[1] + '" fetchpriority="high">';
       content.insertBefore(cover, content.firstChild);
+    }
+
+    /* --- author byline: photo, name, role --- */
+    if (post) {
+      var byline = document.createElement("div");
+      byline.className = "article-byline";
+      byline.innerHTML =
+        '<img src="/assets/logo-mark.png" alt="Maktub Mobile Notary logo">' +
+        '<span>' +
+          '<span class="byline-label">Written by</span>' +
+          '<strong>Maktub Mobile Notary</strong>' +
+          '<span class="byline-role">Owner &amp; Notary Public</span>' +
+        '</span>';
+      content.insertBefore(byline, content.firstChild);
     }
 
     /* --- tags + share footer --- */
@@ -1084,6 +1107,33 @@ renderBody(data.content) +
     layout.appendChild(aside);
     article.appendChild(layout);
 
+    /* --- FAQ section: three questions relevant to this post's category --- */
+    var faqSet = post && FAQS_BY_CATEGORY[post.cat];
+    if (faqSet && faqSet.length) {
+      var faqWrap = document.createElement("section");
+      faqWrap.className = "section section-warm";
+      var faqItemsHtml = faqSet.map(function (item) {
+        return '<div class="faq-item">' +
+          '<button class="faq-q" aria-expanded="false">' +
+            '<span>' + item.q + '</span>' +
+            '<span class="faq-ico" aria-hidden="true"></span>' +
+          '</button>' +
+          '<div class="faq-a"><p>' + item.a + '</p></div>' +
+        '</div>';
+      }).join("");
+      faqWrap.innerHTML =
+        '<div class="wrap wrap-narrow">' +
+          '<div class="center section-head">' +
+            '<p class="eyebrow">Questions</p>' +
+            '<h2 class="h-lg">Frequently asked about ' + post.cat.toLowerCase() + '</h2>' +
+          '</div>' +
+          '<div class="faq">' + faqItemsHtml + '</div>' +
+          '<div class="center" style="margin-top:28px;"><a class="link-arrow" href="/faq/">Read all FAQs &rarr;</a></div>' +
+        '</div>';
+      var articleWrapSection = article.closest("section") || article.parentNode;
+      articleWrapSection.parentNode.insertBefore(faqWrap, articleWrapSection.nextSibling);
+      bindFaqAccordion(faqWrap.querySelectorAll(".faq-q"));
+    }
 
     /* --- highlight the section the reader is currently in --- */
     if (tocLinks.length > 1) {
@@ -1121,26 +1171,67 @@ renderBody(data.content) +
     }
   }
 
+  /* ---------- Brand motion: signature ink + locator pulse ----------
+     Injected rather than written into every page's markup: it is decoration,
+     so it belongs to the script that decorates, and it keeps the 12 pages
+     carrying a booking card from each needing the same inline SVG. The dash
+     animation needs a real SVG element - a data-URI background cannot be
+     dash-animated reliably across browsers - hence the node here.
+     Skipped entirely when the visitor asked for reduced motion. */
+  if (!reduceMotion) {
+    var SIG_NS = "http://www.w3.org/2000/svg";
+    Array.prototype.forEach.call(document.querySelectorAll(".closing-card"), function (card) {
+      if (card.querySelector(".sig-ink")) return;
+      var svg = document.createElementNS(SIG_NS, "svg");
+      svg.setAttribute("class", "sig-ink");
+      svg.setAttribute("viewBox", "0 0 420 120");
+      svg.setAttribute("aria-hidden", "true");
+      svg.setAttribute("focusable", "false");
+      // a loose signature flourish, then a lighter underline stroke
+      [
+        "M12 86c22-34 38-52 49-54 8-2 11 5 8 18-4 17-16 44-16 44s16-52 30-66c7-7 13-5 14 4 1 12-8 34-8 34s14-30 26-36c8-4 13 1 12 10-1 11-9 26-9 26s16-24 28-26c9-2 12 5 9 14-3 8-9 16-9 16s18-14 30-12c14 2 18 12 40 12 24 0 44-12 62-30",
+        "M120 104c60 8 150 8 232-6"
+      ].forEach(function (d) {
+        var p = document.createElementNS(SIG_NS, "path");
+        p.setAttribute("d", d);
+        svg.appendChild(p);
+      });
+      card.insertBefore(svg, card.firstChild);
+      // in the document now, so getTotalLength() is meaningful
+      Array.prototype.forEach.call(svg.querySelectorAll("path"), function (path) {
+        path.style.setProperty("--len", path.getTotalLength());
+      });
+    });
+
+    // into the right-hand visual panel when there is one: that panel is the
+    // map area, and floating the pulse over the section put it on top of the
+    // city chips and the fine print.
+    var areaHost = document.querySelector(".section-area .area-visual") ||
+                   document.querySelector(".section-area");
+    if (areaHost && !areaHost.querySelector(".area-pulse")) {
+      var pulse = document.createElement("div");
+      pulse.className = "area-pulse";
+      pulse.setAttribute("aria-hidden", "true");
+      pulse.innerHTML = "<span></span><span></span><span></span>";
+      areaHost.appendChild(pulse);
+    }
+  }
+
   /* ---------- Unified long-form footer ---------- */
   var siteFooter = document.querySelector(".site-footer");
   if (siteFooter && !siteFooter.querySelector(".footer-inner")) {
     siteFooter.innerHTML =
       '<div class="wrap footer-inner">' +
-        '<div><div class="footer-brand-mark"><img src="/assets/logo.png" alt="Maktub Signature Services"></div><p class="footer-name">Maktub Signature Services</p><p class="footer-tag">Notary &amp; signing services for Tacoma and the South Puget Sound.</p><ul class="footer-reach"><li><a href="tel:' + CONTACT.telHref + '">' + CONTACT.phone + '</a></li><li><a href="mailto:' + CONTACT.email + '">' + CONTACT.email + '</a></li></ul></div>' +
+        '<div><div class="footer-brand-mark"><img src="/assets/logo-mark.png" alt="Maktub Mobile Notary logo"></div><p class="footer-name">Maktub Mobile Notary</p><p class="footer-tag">Mobile notary and loan signings for Tacoma and the South Puget Sound.</p><ul class="footer-reach"><li><a href="tel:' + CONTACT.telHref + '">' + CONTACT.phone + '</a></li><li><a href="mailto:' + CONTACT.email + '">' + CONTACT.email + '</a></li></ul></div>' +
         '<div class="footer-col"><h3>Services</h3><ul><li><a href="/general-notary/">General Notary</a></li><li><a href="/loan-signings/">Loan Signings</a></li><li><a href="/estate-planning/">Estate Planning</a></li><li><a href="/remote-online-notarization/">Online Notarization</a></li><li><a href="/business-notary/">Business Notary</a></li></ul></div>' +
         '<div class="footer-col"><h3>Explore</h3><ul><li><a href="/pricing/">Pricing</a></li><li><a href="/about/">About</a></li><li><a href="/blog/">Blog</a></li><li><a href="/faq/">FAQ</a></li><li><a href="/contact/">Contact</a></li></ul></div>' +
         '<div class="footer-col"><h3>Service area</h3><ul><li>Tacoma</li><li>Lakewood &amp; University Place</li><li>Puyallup &amp; Fife</li><li>Gig Harbor</li><li>Federal Way</li></ul></div>' +
       '</div>' +
-      '<div class="wrap footer-bottom"><p>&copy; <span id="year"></span> Maktub Signature Services. All rights reserved.</p><div class="footer-legal"><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a></div></div>';
+      '<div class="wrap footer-bottom"><p>&copy; <span id="year"></span> Maktub Mobile Notary. All rights reserved.</p><div class="footer-legal"><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a></div></div>';
   }
   if (siteFooter) {
-    var footerIntro = siteFooter.querySelector(".footer-intro");
-    if (!footerIntro) {
-      footerIntro = document.createElement("div");
-      footerIntro.className = "footer-intro";
-      footerIntro.innerHTML = "<p><strong>One trusted notary.</strong><br>Every signature, handled with care.</p>";
-      siteFooter.insertBefore(footerIntro, siteFooter.firstChild);
-    }
+    var existingFooterIntro = siteFooter.querySelector(".footer-intro");
+    if (existingFooterIntro) existingFooterIntro.remove();
     var brandBlock = siteFooter.querySelector(".footer-inner > div:first-child");
     if (brandBlock && !brandBlock.querySelector(".footer-social")) {
       var social = document.createElement("span");
@@ -1149,12 +1240,8 @@ renderBody(data.content) +
       brandBlock.appendChild(social);
     }
     var footerInner = siteFooter.querySelector(".footer-inner");
-    if (footerInner && !footerInner.querySelector(".footer-contact")) {
-      var contact = document.createElement("div");
-      contact.className = "footer-contact";
-      contact.innerHTML = '<h3>Book with confidence</h3><p><strong>Clear, upfront service</strong>Convenient mobile, in-person, and online notarization.</p><p><a href="tel:' + CONTACT.telHref + '">' + CONTACT.phone + '</a><br><a href="mailto:' + CONTACT.email + '">' + CONTACT.email + '</a></p><p><a href="/contact/">Request an appointment &rarr;</a></p>';
-      footerInner.appendChild(contact);
-    }
+    var existingFooterContact = footerInner && footerInner.querySelector(".footer-contact");
+    if (existingFooterContact) existingFooterContact.remove();
     var footerYear = siteFooter.querySelector("#year");
     if (footerYear) footerYear.textContent = new Date().getFullYear();
   }

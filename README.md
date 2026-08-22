@@ -1,4 +1,4 @@
-# Maktub Signature Services — Website
+# Maktub Mobile Notary — Website
 
 Static site. HTML5, CSS3, vanilla JavaScript. No frameworks, no build step —
 upload the files and it runs.
